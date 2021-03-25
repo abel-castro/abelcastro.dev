@@ -1,5 +1,5 @@
 # abelcastro.dev
-Source code of [abelcastro.dev](abelcastro.dev). 
+Source code of [abelcastro.dev](https://abelcastro.dev). 
 
 Built with Django and created with [DDST](https://github.com/abel-castro/ddst).
 
@@ -22,3 +22,8 @@ to see your runserver.
 ```
 docker-compose run --rm django black .
 ```
+
+### Credits
+- https://github.com/testdrivenio/django-on-docker-letsencrypt (staging setup 
+  is not working)
+- [Bootstrap 5 Cover Example](https://getbootstrap.com/docs/5.0/examples/cover/)

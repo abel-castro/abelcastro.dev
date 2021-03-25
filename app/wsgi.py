@@ -1,5 +1,5 @@
 """
-WSGI config for abelcastro_dev project.
+WSGI config for abelcastrodev project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

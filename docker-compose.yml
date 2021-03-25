@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: ./compose/local/django/Dockerfile
-    image: abelcastro_dev_dev_django
+    image: abelcastrodev_dev_django
     command: /start
     volumes:
       - ./app/:/app/
@@ -20,7 +20,7 @@ services:
     build:
       context: .
       dockerfile: ./compose/postgres/Dockerfile
-    image: abelcastro_dev_prod_postgres
+    image: abelcastrodev_prod_postgres
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
