@@ -82,6 +82,14 @@ a{
   padding: 2rem 0;
 }
 
+.post-container a{
+  color: #fcbf1e !important;
+}
+
+.post-container a:hover{
+  text-decoration: underline;
+}
+
 .post-title{
   color: #fcbf1e;
 }
