@@ -1,4 +1,9 @@
 {% extends "base.html" %}
 {% block main %}
 {% include "components/post-container.html" %}
+<p class="mb-4">
+    <a href="{% url 'blog' %}" class="default-link">
+        <i class="bi bi-arrow-left-circle"></i> Back to blog page
+    </a>
+</p>
 {% endblock %}

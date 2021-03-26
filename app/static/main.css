@@ -2,6 +2,19 @@
  * Globals
  */
 
+a{
+  text-decoration: none;
+}
+
+.default-link{
+  color: #fcbf1e !important;
+}
+
+.default-link:hover{
+  text-decoration: underline;
+  color: #fcbf1e !important;
+}
+
 .montserrat{
   font-family: 'Montserrat', sans-serif;
 }
