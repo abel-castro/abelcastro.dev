@@ -18,6 +18,11 @@ to see your runserver.
 
 
 ### Other commands
+- Pytest
+```
+docker-compose run --rm django pytest
+```
+
 - Run black
 ```
 docker-compose run --rm django black .

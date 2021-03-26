@@ -7,7 +7,7 @@ from .constants import BLOG_META_DESCRIPTION
 class BlogView(ListView):
     template_name = "blog.html"
     model = Post
-    queryset = Post.objects.filter(published=True)
+    queryset = Post.objects.filter(published=True).prefetch_related("tags")
     context_object_name = "posts"
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -20,7 +20,7 @@ class BlogView(ListView):
 class PostView(DetailView):
     template_name = "post.html"
     model = Post
-    queryset = Post.objects.filter(published=True)
+    queryset = Post.objects.filter(published=True).prefetch_related("tags")
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(object_list=object_list, **kwargs)
