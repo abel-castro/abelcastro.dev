@@ -135,6 +135,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+ADMIN_URL = os.environ.get("ADMIN_URL")
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
@@ -145,7 +146,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-
 
 MARTOR_ENABLE_CONFIGS = {
     "emoji": "true",  # to enable/disable emoji icons.

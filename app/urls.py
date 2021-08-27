@@ -22,7 +22,7 @@ from django.conf.urls.static import static
 from blog.views import AboutMeView, BlogView, PostView
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
+    path(f"{settings.ADMIN_URL}/", admin.site.urls),
     path("martor/", include("martor.urls")),
     path("", BlogView.as_view(), name="blog"),
     path("about-me/", AboutMeView.as_view(), name="about_me"),
