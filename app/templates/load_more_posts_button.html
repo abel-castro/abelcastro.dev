@@ -1,0 +1,7 @@
+{% if page_obj.has_next %}
+    <div id="post-{{ forloop.counter }}-more" class="post-container text-center">
+        <button class="btn btn-light" hx-get="{% url 'more_posts' %}?page={{ page_obj.next_page_number }}" hx-target="#post-{{ forloop.counter }}-more" hx-swap="outerHTML">
+             Load more posts
+        </button>
+    </div>
+{% endif %}

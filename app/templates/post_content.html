@@ -1,0 +1,12 @@
+{% load martortags %}
+<a class="default-link" href="{% url 'post_detail' object.slug %}">
+    <h2 class="post-title">{{ object.title }}</h2>
+</a>
+<p class="post-date mb-0">{{ object.date }}</p>
+<p class="post-tags">
+    {% for tag in object.tags.all %}
+        <span class="badge rounded-pill bg-light text-dark">{{ tag }}</span>
+    {% endfor %}
+</p>
+<div class="post-content">{{ object.content|safe_markdown }}</div>
+<hr class="post-separator">

@@ -95,6 +95,7 @@ a{
 }
 
 hr.post-separator{
+  margin-top: 5rem;
   border: none;
   height: 1px;
   background-image: linear-gradient(to right, #212529, white, #212529);
@@ -108,4 +109,8 @@ hr.post-separator::after {
   transform-origin: 50% 50%;
   padding: 1rem;
   background-color: #212529;
+}
+
+#the-footer{
+  padding-top: 3rem;
 }
