@@ -26,15 +26,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
     <link href="{% static "main.css" %}" rel="stylesheet">
+    <script src="https://unpkg.com/htmx.org@1.5.0"></script>
   </head>
-  <body class="d-flex {% if request.resolver_match.url_name != "blog" %}h-100{% endif %} text-white bg-dark">
+  <body class="d-flex {% if request.resolver_match.url_name != "post_list" %}h-100{% endif %} text-white bg-dark">
 
-    <div class="d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <div id="main-container" class="d-flex w-100 h-100 p-3 mx-auto flex-column">
       <header class="mb-auto">
         <div>
           <h1 id="page-title" class="float-md-start text-center"><img id="avatar" src="{{ MEDIA_URL }}abelcastro-avatar.png" alt="abelcastro.dev avatar"> castro.dev</h1>
           <nav class="nav nav-masthead justify-content-center float-md-end">
-            <a class="nav-link {% if request.resolver_match.url_name == "blog" or request.resolver_match.url_name == "post" %}active{% endif %}" aria-current="page" href="{% url "blog" %}">Blog</a>
+            <a class="nav-link {% if request.resolver_match.url_name == "post_list" or request.resolver_match.url_name == "post" %}active{% endif %}" aria-current="page" href="{% url "post_list" %}">Blog</a>
             <a class="nav-link {% if request.resolver_match.url_name == "about_me" %}active{% endif %}" href="{% url "about_me" %}">About Me</a>
             <a class="nav-link" target="_blank" href="https://github.com/abel-castro"><i class="bi bi-github"></i></a>
           </nav>
@@ -48,7 +49,7 @@
         </div>
       </main>
 
-      <footer class="mt-auto text-center text-white-50">
+      <footer id="the-footer" class="mt-auto text-center text-white-50">
         <p> Abel Castro {% now "Y" %} - checkout the source code of this blog on <a href="https://github.com/abel-castro/abelcastro.dev" class="github-link" target="_blank"> GitHub</a> </p>
       </footer>
     </div>
@@ -64,4 +65,3 @@
     </script>
   </body>
 </html>
-

@@ -19,14 +19,15 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path
 from django.conf.urls.static import static
 
-from blog.views import AboutMeView, BlogView, PostView
+from blog.views import AboutMeView, PostsListView, PostDetailView, PostsLoadMoreView
 
 urlpatterns = [
     path(f"{settings.ADMIN_URL}/", admin.site.urls),
     path("martor/", include("martor.urls")),
-    path("", BlogView.as_view(), name="blog"),
+    path("", PostsListView.as_view(), name="post_list"),
+    path("more-posts/", PostsLoadMoreView.as_view(), name="more_posts"),
     path("about-me/", AboutMeView.as_view(), name="about_me"),
-    path("<slug:slug>/", PostView.as_view(), name="post"),
+    path("<slug:slug>/", PostDetailView.as_view(), name="post_detail"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

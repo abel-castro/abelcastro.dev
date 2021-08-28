@@ -4,11 +4,14 @@ from .models import Post
 from .constants import BLOG_META_DESCRIPTION
 
 
-class BlogView(ListView):
-    template_name = "blog.html"
+class PostsBaseView(ListView):
     model = Post
     queryset = Post.objects.filter(published=True).prefetch_related("tags")
-    context_object_name = "posts"
+    paginate_by = 3
+
+
+class PostsListView(PostsBaseView):
+    template_name = "post_list.html"
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(object_list=object_list, **kwargs)
@@ -17,8 +20,12 @@ class BlogView(ListView):
         return context
 
 
-class PostView(DetailView):
-    template_name = "post.html"
+class PostsLoadMoreView(PostsBaseView):
+    template_name = "load_more_posts.html"
+
+
+class PostDetailView(DetailView):
+    template_name = "post_detail.html"
     model = Post
     queryset = Post.objects.filter(published=True).prefetch_related("tags")
 
