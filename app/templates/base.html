@@ -27,14 +27,29 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
     <link href="{% static "main.css" %}" rel="stylesheet">
     <script src="https://unpkg.com/htmx.org@1.5.0"></script>
+    </script>
   </head>
   <body class="d-flex {% if request.resolver_match.url_name != "post_list" %}h-100{% endif %} text-white bg-dark">
 
-    <div id="main-container" class="d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <div class="d-flex w-100 h-100 p-3 mx-auto flex-column">
       <header class="mb-auto">
         <div>
           <h1 id="page-title" class="float-md-start text-center"><img id="avatar" src="{{ MEDIA_URL }}abelcastro-avatar.png" alt="abelcastro.dev avatar"> castro.dev</h1>
           <nav class="nav nav-masthead justify-content-center float-md-end">
+            {% if request.resolver_match.url_name == 'post_list' %}
+            <span id="posts-search-input-container">
+                <input
+                   id="posts-search"
+                   class="form-control" type="text"
+                   name="search_term" placeholder="Search in Posts"
+                   hx-get="{% url 'search' %}"
+                   hx-trigger="keyup changed delay:500ms"
+                   hx-target="#main-container"
+                   hx-indicator=".htmx-indicator"
+                   hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+                >
+            </span>
+            {% endif %}
             <a class="nav-link {% if request.resolver_match.url_name == "post_list" or request.resolver_match.url_name == "post" %}active{% endif %}" aria-current="page" href="{% url "post_list" %}">Blog</a>
             <a class="nav-link {% if request.resolver_match.url_name == "about_me" %}active{% endif %}" href="{% url "about_me" %}">About Me</a>
             <a class="nav-link" target="_blank" href="https://github.com/abel-castro"><i class="bi bi-github"></i></a>
@@ -43,7 +58,7 @@
       </header>
 
       <main>
-        <div class="container">
+        <div id="main-container" class="container">
             {% block main %}
             {% endblock %}
         </div>
@@ -59,8 +74,16 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
     <script type="text/javascript" src="{% static 'plugins/js/highlight.min.js' %}"></script>
     <script>
-    $('.post-content pre').each(function(i, block){
-        hljs.highlightBlock(block);
+    function highlightBlocks(){
+        $('.post-content pre').each(function(i, block){
+            hljs.highlightBlock(block);
+        });
+    }
+
+    highlightBlocks();
+
+    htmx.onLoad(function(content) {
+        highlightBlocks();
     });
     </script>
   </body>

@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.views.generic import DetailView, ListView, TemplateView
 
 from .models import Post
@@ -17,6 +18,21 @@ class PostsListView(PostsBaseView):
         context = super().get_context_data(object_list=object_list, **kwargs)
         context["page_title"] = "Abel Castro Blog"
         context["meta_description"] = BLOG_META_DESCRIPTION
+        return context
+
+
+class PostSearchView(PostsBaseView):
+    template_name = "post_search.html"
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data()
+        search_term = self.request.GET.get('search_term', '')
+        queryset = self.get_queryset()
+
+        if search_term:
+            queryset = queryset.filter(title__contains=search_term) | queryset.filter(content__contains=search_term)
+
+        context['object_list'] = queryset
         return context
 
 

@@ -78,6 +78,30 @@ a{
   border-bottom-color: #fcbf1e;
 }
 
+#posts-search-input-container{
+  padding: 0 0.5rem;
+}
+
+#posts-search{
+  width: 5rem;
+  transition: width 0.5s;
+}
+
+#posts-search:focus{
+  width: 15rem;
+}
+
+@media screen and (max-width:768px) {
+  #posts-search-input-container{
+    width: 100%;
+    text-align: center;
+  }
+  #posts-search{
+    display: inline-flex;
+  }
+
+}
+
 .post-container{
   padding: 2rem 0;
 }
