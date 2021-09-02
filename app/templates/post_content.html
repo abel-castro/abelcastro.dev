@@ -8,5 +8,5 @@
         <span class="badge rounded-pill bg-light text-dark">{{ tag }}</span>
     {% endfor %}
 </p>
-<div class="post-content">{{ object.content|safe_markdown }}</div>
+<div class="post-content" hx-disable>{{ object.content|safe_markdown }}</div>
 <hr class="post-separator">
