@@ -1,11 +1,11 @@
-from django.db.models import Q
 from django.views.generic import DetailView, ListView, TemplateView
 
-from .models import Post
-from .constants import BLOG_META_DESCRIPTION
+from blog.models import Post
+from blog.constants import BLOG_META_DESCRIPTION
+from blog.tracking_mixing import TrackingMixin
 
 
-class PostsBaseView(ListView):
+class PostsBaseView(TrackingMixin, ListView):
     model = Post
     queryset = Post.objects.filter(published=True).prefetch_related("tags")
     paginate_by = 3
@@ -40,7 +40,7 @@ class PostsLoadMoreView(PostsBaseView):
     template_name = "load_more_posts.html"
 
 
-class PostDetailView(DetailView):
+class PostDetailView(TrackingMixin, DetailView):
     template_name = "post_detail.html"
     model = Post
     queryset = Post.objects.filter(published=True).prefetch_related("tags")
@@ -53,7 +53,7 @@ class PostDetailView(DetailView):
         return context
 
 
-class AboutMeView(TemplateView):
+class AboutMeView(TrackingMixin, TemplateView):
     template_name = "about_me.html"
 
     def get_context_data(self, *, object_list=None, **kwargs):

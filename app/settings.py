@@ -156,3 +156,6 @@ MARTOR_ENABLE_CONFIGS = {
     "spellcheck": "false",  # to enable/disable spellcheck in form textareas
     "hljs": "true",  # to enable/disable hljs highlighting in preview
 }
+
+BASIC_ANALYTICS_URL = os.environ.get("BASIC_ANALYTICS_URL")
+BASIC_ANALYTICS_ID = os.environ.get("BASIC_ANALYTICS_ID")
