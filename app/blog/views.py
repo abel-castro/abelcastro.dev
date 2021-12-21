@@ -5,13 +5,13 @@ from blog.constants import BLOG_META_DESCRIPTION
 from blog.tracking_mixing import TrackingMixin
 
 
-class PostsBaseView(TrackingMixin, ListView):
+class PostsBaseView(ListView):
     model = Post
     queryset = Post.objects.filter(published=True).prefetch_related("tags")
     paginate_by = 3
 
 
-class PostsListView(PostsBaseView):
+class PostsListView(TrackingMixin, PostsBaseView):
     template_name = "post_list.html"
 
     def get_context_data(self, *, object_list=None, **kwargs):
