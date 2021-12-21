@@ -15,21 +15,42 @@ Including another URLconf
 """
 from django.conf import settings
 from django.contrib import admin
+from django.contrib.sitemaps.views import sitemap
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path
 from django.conf.urls.static import static
 from django.views.decorators.cache import cache_page
 
-from blog.views import AboutMeView, PostsListView, PostDetailView, PostsLoadMoreView, PostSearchView
+from blog.sitemaps import PostSitemap, StaticSitemap
+from blog.views import (
+    AboutMeView,
+    PostsListView,
+    PostDetailView,
+    PostsLoadMoreView,
+    PostSearchView,
+)
+
+
+sitemaps = {"posts": PostSitemap, "static": StaticSitemap}
 
 urlpatterns = [
     path(f"{settings.ADMIN_URL}/", admin.site.urls),
     path("martor/", include("martor.urls")),
+    path(
+        "sitemap.xml",
+        sitemap,
+        {"sitemaps": sitemaps},
+        name="django.contrib.sitemaps.views.sitemap",
+    ),
     path("", cache_page(60 * 60)(PostsListView.as_view()), name="post_list"),
     path("search/", PostSearchView.as_view(), name="search"),
     path("more-posts/", PostsLoadMoreView.as_view(), name="more_posts"),
     path("about-me/", cache_page(60 * 60)(AboutMeView.as_view()), name="about_me"),
-    path("<slug:slug>/", cache_page(60 * 60)(PostDetailView.as_view()), name="post_detail"),
+    path(
+        "<slug:slug>/",
+        cache_page(60 * 60)(PostDetailView.as_view()),
+        name="post_detail",
+    ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

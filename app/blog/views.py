@@ -26,13 +26,15 @@ class PostSearchView(PostsBaseView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data()
-        search_term = self.request.GET.get('search_term', '')
+        search_term = self.request.GET.get("search_term", "")
         queryset = self.get_queryset()
 
         if search_term:
-            queryset = queryset.filter(title__contains=search_term) | queryset.filter(content__contains=search_term)
+            queryset = queryset.filter(title__contains=search_term) | queryset.filter(
+                content__contains=search_term
+            )
 
-        context['object_list'] = queryset
+        context["object_list"] = queryset
         return context
 
 
