@@ -67,7 +67,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "urls"
-
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -103,6 +102,8 @@ DATABASES = {
         "ATOMIC_REQUESTS": True,
     }
 }
+
+DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
