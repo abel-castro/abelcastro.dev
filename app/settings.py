@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "django_extensions",
     "martor",
     "axes",
+    "basic_analytics_tracker",
     # project apps
     "blog",
 ]
@@ -138,6 +139,31 @@ USE_L10N = True
 USE_TZ = True
 
 ADMIN_URL = os.environ.get("ADMIN_URL")
+
+# https://docs.djangoproject.com/en/4.0/topics/logging/#examples
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+        },
+    },
+    "root": {
+        "handlers": ["console"],
+        "level": "WARNING",
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["console"],
+            "propagate": True,
+        },
+        "tracker.mixins": {
+            "handlers": ["console"],
+            "level": "INFO",
+        },
+    },
+}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
