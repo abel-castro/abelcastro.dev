@@ -16,7 +16,7 @@ class Tag(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=255)
     slug = models.SlugField(unique=True)
-    meta_description = models.TextField(max_length=155)
+    meta_description = models.TextField(max_length=320)
     content = MartorField()
     published = models.BooleanField(default=False)
     date = models.DateField(blank=True)
