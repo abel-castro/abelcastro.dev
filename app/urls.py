@@ -13,29 +13,23 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
+from blog.sitemaps import PostSitemap, StaticSitemap
+from blog.views import (AboutMeView, PostDetailView, PostSearchView,
+                        PostsListView, PostsLoadMoreView)
 from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path
-from django.conf.urls.static import static
 from django.views.decorators.cache import cache_page
-
-from blog.sitemaps import PostSitemap, StaticSitemap
-from blog.views import (
-    AboutMeView,
-    PostsListView,
-    PostDetailView,
-    PostsLoadMoreView,
-    PostSearchView,
-)
-
 
 sitemaps = {"posts": PostSitemap, "static": StaticSitemap}
 
 urlpatterns = [
     path(f"{settings.ADMIN_URL}/", admin.site.urls),
     path("martor/", include("martor.urls")),
+    path("api-auth/", include("rest_framework.urls")),
     path(
         "sitemap.xml",
         sitemap,
@@ -51,6 +45,7 @@ urlpatterns = [
         cache_page(60 * 60)(PostDetailView.as_view()),
         name="post_detail",
     ),
+    path("api/", include("api.urls", namespace="api")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

@@ -1,4 +1,5 @@
 from pytest import mark
+
 from .models import Post, Tag
 
 

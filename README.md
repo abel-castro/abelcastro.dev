@@ -7,8 +7,12 @@ My goal was to create a simple solution for blogging without using a CMS.
 This blog only uses django core functionalities and the great Markdown editor 
 [martor](https://github.com/agusmakmun/django-markdown-editor).
 
+## API
+This project also provides a REST-API with following endpoints:
 
-### Development
+- `GET /api/posts/` - return all posts
+
+## Development
 - Create a .env file from the template env_template_dev with the desired values.
 
 - Build the development image: ```docker-compose build ```
@@ -17,7 +21,7 @@ This blog only uses django core functionalities and the great Markdown editor
 to see your runserver.
 
 
-### Other commands
+## Other commands
 - Pytest
 ```
 docker-compose run --rm django pytest
@@ -28,7 +32,7 @@ docker-compose run --rm django pytest
 docker-compose run --rm django black .
 ```
 
-### Credits
+## Credits
 - https://github.com/testdrivenio/django-on-docker-letsencrypt (staging setup 
   is not working)
 - [Bootstrap 5 Cover Example](https://getbootstrap.com/docs/5.0/examples/cover/)

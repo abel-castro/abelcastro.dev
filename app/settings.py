@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+
 from environs import Env
 
 env = Env()
@@ -46,9 +47,11 @@ INSTALLED_APPS = [
     "django_extensions",
     "martor",
     "axes",
+    "rest_framework",
     "basic_analytics_tracker",
     # project apps
     "blog",
+    "api",
 ]
 
 AUTHENTICATION_BACKENDS = [

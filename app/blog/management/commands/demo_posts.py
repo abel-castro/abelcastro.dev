@@ -1,11 +1,9 @@
 import random
 
 import faker
-from mdgen import MarkdownPostProvider
-
+from blog.models import Post, Tag
 from django.core.management.base import BaseCommand
-
-from blog.models import Tag, Post
+from mdgen import MarkdownPostProvider
 
 
 class Command(BaseCommand):
