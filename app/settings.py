@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "martor",
     "axes",
     "rest_framework",
+    "corsheaders",
     "basic_analytics_tracker",
     # project apps
     "blog",
@@ -68,6 +69,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "axes.middleware.AxesMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
 ]
 
 ROOT_URLCONF = "urls"
@@ -187,6 +189,11 @@ MARTOR_ENABLE_CONFIGS = {
     "spellcheck": "false",  # to enable/disable spellcheck in form textareas
     "hljs": "true",  # to enable/disable hljs highlighting in preview
 }
+
+# CORS
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_WHITELIST = ("https://ng.abelcastro.dev",)
 
 BASIC_ANALYTICS_URL = os.environ.get("BASIC_ANALYTICS_URL")
 BASIC_ANALYTICS_ID = os.environ.get("BASIC_ANALYTICS_ID")

@@ -1,9 +1,10 @@
 django==4.*
-psycopg2==2.8.6
+psycopg2==2.9.7
 djangorestframework==3.14.0
 environs==9.5.0 # https://pypi.org/project/environs/#basic-usage
 django-extensions==3.2.3
-Werkzeug
+Werkzeug==2.3.7 # required for django-extensions
 martor==1.6.*
-django-axes==6.1.0
+django-axes==6.1.1
+django-cors-headers==4.2.0
 -e git+https://github.com/abel-castro/django_basic_analytics_tracker#egg=django-basic-analytics-tracker
