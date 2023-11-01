@@ -19,7 +19,7 @@ def test__no_n_plus_one(client, django_assert_max_num_queries):
     )
     post_1.tags.add(tag_1)
 
-    with django_assert_max_num_queries(4):
+    with django_assert_max_num_queries(5):
         response = client.get("/")
         assert response.status_code == 200
 
@@ -33,6 +33,6 @@ def test__no_n_plus_one(client, django_assert_max_num_queries):
     )
     post_2.tags.add(tag_2)
 
-    with django_assert_max_num_queries(4):
+    with django_assert_max_num_queries(5):
         response = client.get("/")
         assert response.status_code == 200

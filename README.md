@@ -11,6 +11,8 @@ This blog only uses django core functionalities and the great Markdown editor
 This project also provides a REST-API with following endpoints:
 
 - `GET /api/posts/` - return all posts
+- `GET /sports/standings/` - return the current standings of some of the most important football competitions in Europe
+
 
 ## Development
 - Create a .env file from the template env_template_dev with the desired values.
