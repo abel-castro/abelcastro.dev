@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     "basic_analytics_tracker",
     # project apps
     "blog",
+    "sports",
     "api",
 ]
 
@@ -197,3 +198,8 @@ CORS_ORIGIN_WHITELIST = ("https://ng.abelcastro.dev",)
 
 BASIC_ANALYTICS_URL = os.environ.get("BASIC_ANALYTICS_URL")
 BASIC_ANALYTICS_ID = os.environ.get("BASIC_ANALYTICS_ID")
+
+
+# Sports
+API_FOOTBAL_KEY = os.environ.get("API_FOOTBAL_KEY")
+API_FOOTBAL_HOST = os.environ.get("API_FOOTBAL_HOST")
