@@ -79,7 +79,7 @@ def transform_provider_data_to_entities(
 
 
 class ApiFootballDataProvider(DataProviderInterface):
-    def _get_data_from_data_provider(self, league_data_provider_id: int) -> dict:
+    def get_raw_data(self, league_data_provider_id: int) -> dict:
         data = {}
         url = "https://api-football-v1.p.rapidapi.com/v3/standings"
 
@@ -98,7 +98,7 @@ class ApiFootballDataProvider(DataProviderInterface):
 
         return data
 
-    def _transform_provider_data_to_entities(
+    def transform_raw_data_to_entities(
         self, provider_data: dict
     ) -> List[TeamInternalEntity]:
         return transform_provider_data_to_entities(provider_data=provider_data)
