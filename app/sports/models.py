@@ -5,6 +5,7 @@ class League(models.Model):
     name = models.CharField(max_length=100)
     slug = models.CharField(max_length=100)
     logo = models.URLField(blank=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self) -> str:
         return f"{self.name}"

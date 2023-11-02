@@ -34,6 +34,10 @@ docker-compose run --rm django pytest
 docker-compose run --rm django black .
 ```
 
+- Manual get data from API-Football standings
+```
+docker-compose run --rm django /app/manage.py import_league_standings
+```
 ## Credits
 - https://github.com/testdrivenio/django-on-docker-letsencrypt (staging setup 
   is not working)
