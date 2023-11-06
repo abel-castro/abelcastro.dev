@@ -3,7 +3,7 @@ from sports.models import League, Team
 
 
 class LeagueModelAdmin(admin.ModelAdmin):
-    readonly_fields = ('updated_at',)
+    readonly_fields = ("updated_at",)
 
 
 admin.site.register(League, LeagueModelAdmin)

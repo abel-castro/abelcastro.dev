@@ -22,6 +22,7 @@ def save_team_data_to_db(team_data: List[TeamInternalEntity], league: League) ->
         )
     if team_data:
         league.updated_at = timezone.now()
+        league.save()
 
 
 class LeagueStandingsImporter:
