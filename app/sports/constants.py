@@ -21,4 +21,8 @@ AVAILABLE_LEAGUES = AvailableLeaguesEntity(
         name="Ligue 1",
         slug="french_ligue_1",
     ),
+    portuguese_primeira_liga=LeagueInternalEntity(
+        name="Primeira Liga",
+        slug="portuguese_primeira_liga",
+    ),
 )

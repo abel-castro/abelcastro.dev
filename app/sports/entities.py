@@ -34,3 +34,4 @@ class AvailableLeaguesEntity(BaseModel):
     german_bundesliga: LeagueInternalEntity
     austrian_bundesliga: LeagueInternalEntity
     french_ligue_1: LeagueInternalEntity
+    portuguese_primeira_liga: LeagueInternalEntity

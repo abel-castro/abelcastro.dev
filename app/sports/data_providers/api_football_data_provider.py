@@ -46,6 +46,12 @@ def add_api_football_related_data() -> AvailableLeaguesEntity:
         "https://media-4.api-sports.io/football/leagues/61.png"
     )
 
+    available_leagues_with_api_football_data.portuguese_primeira_liga.data_provider_id = (
+        94
+    )
+    available_leagues_with_api_football_data.portuguese_primeira_liga.logo = (
+        "https://media-4.api-sports.io/football/leagues/94.png"
+    )
     return available_leagues_with_api_football_data
 
 
