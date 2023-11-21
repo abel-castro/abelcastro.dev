@@ -20,6 +20,7 @@ from blog.views import (
     PostSearchView,
     PostsListView,
     PostsLoadMoreView,
+    PrivacyPolicyView,
 )
 from django.conf import settings
 from django.conf.urls.static import static
@@ -45,6 +46,11 @@ urlpatterns = [
     path("search/", PostSearchView.as_view(), name="search"),
     path("more-posts/", PostsLoadMoreView.as_view(), name="more_posts"),
     path("about-me/", cache_page(60 * 60)(AboutMeView.as_view()), name="about_me"),
+    path(
+        "privacy-policy/",
+        cache_page(60 * 60)(PrivacyPolicyView.as_view()),
+        name="privacy_policy",
+    ),
     path(
         "<slug:slug>/",
         cache_page(60 * 60)(PostDetailView.as_view()),

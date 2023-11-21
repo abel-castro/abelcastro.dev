@@ -62,3 +62,13 @@ class AboutMeView(TrackingMixin, TemplateView):
         context["page_title"] = "About me - Abel Castro"
         context["meta_description"] = BLOG_META_DESCRIPTION
         return context
+
+
+class PrivacyPolicyView(TrackingMixin, TemplateView):
+    template_name = "privacy_policy.html"
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(object_list=object_list, **kwargs)
+        context["page_title"] = "Privacy Policy - Abel Castro"
+        context["meta_description"] = BLOG_META_DESCRIPTION
+        return context
