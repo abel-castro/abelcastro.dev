@@ -91,6 +91,7 @@ a{
 #posts-search{
   width: 5rem;
   transition: width 0.5s;
+  margin-right: 0.625rem;
 }
 
 #posts-search:focus{
