@@ -1,6 +1,5 @@
 from sports.entities import TeamInternalEntity
 
-
 TEST_TEAM_ENTITY_LIST = [
     TeamInternalEntity(
         name="Tottenham",

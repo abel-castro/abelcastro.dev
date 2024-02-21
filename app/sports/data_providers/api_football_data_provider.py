@@ -1,13 +1,11 @@
 import copy
 from typing import List
-from django.conf import settings
-from sports.data_providers.interfaces import DataProviderInterface
-from sports.constants import AVAILABLE_LEAGUES
-from sports.entities import (
-    AvailableLeaguesEntity,
-    TeamInternalEntity,
-)
+
 import requests
+from django.conf import settings
+from sports.constants import AVAILABLE_LEAGUES
+from sports.data_providers.interfaces import DataProviderInterface
+from sports.entities import AvailableLeaguesEntity, TeamInternalEntity
 
 
 def add_api_football_related_data() -> AvailableLeaguesEntity:

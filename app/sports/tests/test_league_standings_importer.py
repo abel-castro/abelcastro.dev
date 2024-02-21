@@ -1,7 +1,7 @@
 import pytest
-from sports.tests.test_api_football_data_provider import TEST_TEAM_ENTITY_LIST
 from sports.league_standings_importer import save_team_data_to_db
 from sports.models import League, Team
+from sports.tests.test_api_football_data_provider import TEST_TEAM_ENTITY_LIST
 
 
 @pytest.mark.django_db()

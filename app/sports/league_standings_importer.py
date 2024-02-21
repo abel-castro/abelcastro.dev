@@ -1,11 +1,9 @@
-from django.utils import timezone
 from typing import List
+
+from django.utils import timezone
 from sports.data_providers.interfaces import DataProviderInterface
-from sports.entities import (
-    AvailableLeaguesEntity,
-    LeagueInternalEntity,
-    TeamInternalEntity,
-)
+from sports.entities import (AvailableLeaguesEntity, LeagueInternalEntity,
+                             TeamInternalEntity)
 from sports.models import League, Team
 
 

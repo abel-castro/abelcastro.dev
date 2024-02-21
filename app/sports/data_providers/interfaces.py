@@ -1,10 +1,7 @@
+from abc import ABC, abstractmethod
 from typing import List
 
-from sports.entities import (
-    AvailableLeaguesEntity,
-    TeamInternalEntity,
-)
-from abc import ABC, abstractmethod
+from sports.entities import AvailableLeaguesEntity, TeamInternalEntity
 
 
 class DataProviderInterface(ABC):
