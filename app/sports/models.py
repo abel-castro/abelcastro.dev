@@ -23,12 +23,12 @@ class Team(models.Model):
 
 
 class Result(models.Model):
-    team_1 = models.CharField(max_length=50)
-    team_2 = models.CharField(max_length=50)
-    team_1_goals = models.PositiveSmallIntegerField()
-    team_2_goals = models.PositiveSmallIntegerField()
+    homeTeam = models.CharField(max_length=100)
+    awayTeam = models.CharField(max_length=100)
+    homeScore = models.PositiveSmallIntegerField()
+    awayScore = models.PositiveSmallIntegerField()
     matchday = models.PositiveSmallIntegerField()
     league = models.ForeignKey(League, on_delete=models.CASCADE, related_name="results")
 
     def __str__(self) -> str:
-        return f"{self.team_1} vs {self.team_2} at {self.date}"
+        return f"{self.homeTeam} {self.homeScore} - {self.awayScore} {self.awayTeam} at matchday {self.matchday}"

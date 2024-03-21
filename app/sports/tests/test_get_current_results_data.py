@@ -11,19 +11,19 @@ def create_test_data():
         logo="https://media-4.api-sports.io/football/leagues/39.png",
     )
     Result.objects.create(
-        team_1="Tottenham Hotspur",
-        team_2="Arsenal",
-        team_1_goals=1,
-        team_2_goals=2,
+        homeTeam="Tottenham Hotspur",
+        awayTeam="Arsenal",
+        homeScore=1,
+        awayScore=2,
         league=premier_league,
         matchday=1,
     )
 
     Result.objects.create(
-        team_1="Man. City",
-        team_2="Chelsea",
-        team_1_goals=3,
-        team_2_goals=5,
+        homeTeam="Man. City",
+        awayTeam="Chelsea",
+        homeScore=3,
+        awayScore=5,
         league=premier_league,
         matchday=1,
     )
@@ -34,15 +34,15 @@ def test_get_current_results_data():
     create_test_data()
 
     result_1 = ResultExternalEntity(
-        team_1="Tottenham Hotspur",
-        team_2="Arsenal",
-        team_1_goals=1,
-        team_2_goals=2,
+        homeTeam="Tottenham Hotspur",
+        awayTeam="Arsenal",
+        homeScore=1,
+        awayScore=2,
         matchday=1,
     )
 
     result_2 = ResultExternalEntity(
-        team_1="Man. City", team_2="Chelsea", team_1_goals=3, team_2_goals=5, matchday=1
+        homeTeam="Man. City", awayTeam="Chelsea", homeScore=3, awayScore=5, matchday=1
     )
 
     expected_data = {

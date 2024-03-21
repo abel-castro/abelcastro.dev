@@ -4,17 +4,18 @@ from sports.data_providers.api_football_data_provider import (
     AVAILABLE_LEAGUES_WITH_API_FOOTBALL_DATA,
     ApiFootballDataProvider,
 )
-from sports.league_standings_importer import LeagueStandingsImporter
-from sports.models import Team
+from sports.league_results_importer import LeagueResultsImporter
+from sports.models import Result
 
 
 class Command(BaseCommand):
-    help = "Import league standings from the data provider API-Football"
+    help = "Import league results from the data provider API-Football"
 
     def handle(self, *args, **options):
-        Team.objects.all().delete()
+        Result.objects.all().delete()
         data_provider = ApiFootballDataProvider(season=CURRENT_SEASON)
-        importer = LeagueStandingsImporter(
+        # pass from and to here
+        importer = LeagueResultsImporter(
             data_provider=data_provider,
             leagues_to_import=AVAILABLE_LEAGUES_WITH_API_FOOTBALL_DATA,
         )

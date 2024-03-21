@@ -29,17 +29,16 @@ class LeagueInternalEntity(LeagueExternalEntity):
 
 
 class ResultExternalEntity(BaseModel):
-    team_1: str
-    team_2: str
-    team_1_goals: int
-    team_2_goals: int
+    homeTeam: str
+    awayTeam: str
+    homeScore: int
+    awayScore: int
     matchday: int
 
 
 class ResultInternalEntity(ResultExternalEntity):
     id: Optional[int] = None
-    data_provider_id: Optional[int] = None
-    league_id: str
+    data_provider_league_id: Optional[int] = None
 
 
 class AvailableLeaguesEntity(BaseModel):

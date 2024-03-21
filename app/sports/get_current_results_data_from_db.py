@@ -16,10 +16,10 @@ def get_current_results_data() -> AvailableResultsEntity:
         league_results = []
         for result in results:
             result_data = ResultExternalEntity(
-                team_1=result.team_1,
-                team_2=result.team_2,
-                team_1_goals=result.team_1_goals,
-                team_2_goals=result.team_2_goals,
+                homeTeam=result.homeTeam,
+                awayTeam=result.awayTeam,
+                homeScore=result.homeScore,
+                awayScore=result.awayScore,
                 matchday=result.matchday,
             )
             league_results.append(result_data.dict())
