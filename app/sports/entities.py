@@ -1,5 +1,6 @@
-from pydantic import BaseModel
 from typing import List, Optional
+
+from pydantic import BaseModel
 
 
 class TeamExternalEntity(BaseModel):
@@ -27,6 +28,19 @@ class LeagueInternalEntity(LeagueExternalEntity):
     teams: List[TeamInternalEntity] = []
 
 
+class ResultExternalEntity(BaseModel):
+    homeTeam: str
+    awayTeam: str
+    homeScore: int
+    awayScore: int
+    matchday: int
+
+
+class ResultInternalEntity(ResultExternalEntity):
+    id: Optional[int] = None
+    data_provider_league_id: Optional[int] = None
+
+
 class AvailableLeaguesEntity(BaseModel):
     english_premier_league: LeagueInternalEntity
     spanish_la_liga: LeagueInternalEntity
@@ -35,3 +49,13 @@ class AvailableLeaguesEntity(BaseModel):
     austrian_bundesliga: LeagueInternalEntity
     french_ligue_1: LeagueInternalEntity
     portuguese_primeira_liga: LeagueInternalEntity
+
+
+class AvailableResultsEntity(BaseModel):
+    english_premier_league: Optional[List[ResultExternalEntity]] = []
+    spanish_la_liga: Optional[List[ResultExternalEntity]] = []
+    italian_seria_a: Optional[List[ResultExternalEntity]] = []
+    german_bundesliga: Optional[List[ResultExternalEntity]] = []
+    austrian_bundesliga: Optional[List[ResultExternalEntity]] = []
+    french_ligue_1: Optional[List[ResultExternalEntity]] = []
+    portuguese_primeira_liga: Optional[List[ResultExternalEntity]] = []

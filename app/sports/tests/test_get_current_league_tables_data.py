@@ -1,8 +1,7 @@
-from sports.entities import LeagueExternalEntity
 import pytest
+from sports.entities import LeagueExternalEntity
 from sports.get_leagues_data_from_db import get_current_standings_data
 from sports.models import League, Team
-
 
 TEST_PREMIER_LEAGUE_TEAMS = [
     {"position": 1, "name": "Tottenham Hotspur", "points": 20},

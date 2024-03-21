@@ -1,7 +1,6 @@
-from sports.entities import TeamInternalEntity
+from sports.entities import TeamInternalEntity, ResultInternalEntity
 
-
-TEST_TEAM_ENTITY_LIST = [
+TEST_TEAM_STANDINGS_ENTITY_LIST = [
     TeamInternalEntity(
         name="Tottenham",
         data_provider_id=47,
@@ -30,4 +29,15 @@ TEST_TEAM_ENTITY_LIST = [
         position=4,
         logo="https://media-4.api-sports.io/football/teams/40.png",
     ),
+]
+
+
+TEST_TEAM_STANDINGS_ENTITY_LIST = [
+    ResultInternalEntity(
+        homeTeam="Atletico Madrid",
+        awayTeam="Barcelona",
+        homeScore=0,
+        awayScore=3,
+        matchday=29,
+    )
 ]

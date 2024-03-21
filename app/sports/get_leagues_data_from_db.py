@@ -1,10 +1,8 @@
 from typing import List
+
 from sports.constants import AVAILABLE_LEAGUES
+from sports.entities import LeagueExternalEntity, TeamExternalEntity
 from sports.models import League
-from sports.entities import (
-    TeamExternalEntity,
-    LeagueExternalEntity,
-)
 
 
 def get_current_standings_data() -> List[LeagueExternalEntity]:
