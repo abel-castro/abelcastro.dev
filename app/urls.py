@@ -14,8 +14,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from blog.sitemaps import PostSitemap, StaticSitemap
-from blog.views import (AboutMeView, PostDetailView, PostSearchView,
-                        PostsListView, PostsLoadMoreView, PrivacyPolicyView)
+from blog.views import (
+    AboutMeView,
+    PostDetailView,
+    PostSearchView,
+    PostsListView,
+    PostsLoadMoreView,
+    PrivacyPolicyView,
+)
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin

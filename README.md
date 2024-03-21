@@ -38,10 +38,10 @@ This project also provides a REST-API with following endpoints:
       "english_premier_league": [
         {
           "matchday": 1,
-          "team_1": "Tottenham Hotspur",
-          "team_1_goals": 1,
-          "team_2": "Arsenal",
-          "team_2_goals": 2
+          "homeTeam": "Tottenham Hotspur",
+          "homeScore": 1,
+          "awayTeam": "Arsenal",
+          "awayScore": 2
         },
         ...
       ],

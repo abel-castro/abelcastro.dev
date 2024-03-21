@@ -5,42 +5,49 @@ from sports.data_providers.interfaces import DataProviderInterface
 from sports.entities import (
     AvailableLeaguesEntity,
     LeagueInternalEntity,
-    TeamInternalEntity,
+    ResultInternalEntity,
 )
-from sports.models import League, Team
+from sports.models import League, Result
 
 
-def save_team_data_to_db(team_data: List[TeamInternalEntity], league: League) -> None:
-    for team in team_data:
-        Team.objects.update_or_create(
-            name=team.name,
+def save_team_data_to_db(
+    results_data: List[ResultInternalEntity], league: League
+) -> None:
+    for result_entity in results_data:
+        Result.objects.update_or_create(
+            homeTeam=result_entity.homeTeam,
+            awayTeam=result_entity.awayTeam,
             league=league,
             defaults={
-                "position": team.position,
-                "points": team.points,
-                "logo": team.logo,
+                "homeScore": result_entity.homeScore,
+                "awayScore": result_entity.awayScore,
+                "matchday": result_entity.matchday,
             },
         )
-    if team_data:
+    if result_entity:
         league.updated_at = timezone.now()
         league.save()
 
 
-class LeagueStandingsImporter:
+class LeagueResultsImporter:
     def __init__(
         self,
         data_provider: DataProviderInterface,
         leagues_to_import: AvailableLeaguesEntity,
+        from_date: str,
+        to_date: str,
     ) -> None:
         super().__init__()
         self.data_provider = data_provider
         self.leagues_to_import = leagues_to_import
+        self.from_date = from_date
+        self.to_date = to_date
 
     @staticmethod
     def get_or_create_league(
         league_slug: str, league_data: LeagueInternalEntity
     ) -> League:
-        league, created = League.objects.get_or_create(
+        league, _ = League.objects.get_or_create(
             slug=league_slug,
             defaults={
                 "name": league_data.name,
@@ -56,10 +63,12 @@ class LeagueStandingsImporter:
             league_instance = self.get_or_create_league(
                 league_slug=league_slug, league_data=league_entity
             )
-            raw_data = self.data_provider.get_raw_standings_data(
-                league_data_provider_id=league_entity.data_provider_id
+            raw_data = self.data_provider.get_raw_results_data(
+                league_data_provider_id=league_entity.data_provider_id,
+                from_date=self.from_date,
+                to_date=self.to_date,
             )
-            team_entities = self.data_provider.transform_raw_standings_data_to_entities(
+            result_entities = self.data_provider.transform_raw_results_data_to_entities(
                 provider_data=raw_data
             )
-            save_team_data_to_db(team_data=team_entities, league=league_instance)
+            save_team_data_to_db(results_data=result_entities, league=league_instance)

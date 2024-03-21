@@ -15,11 +15,19 @@ class TeamInternalEntity(TeamExternalEntity):
     data_provider_id: Optional[int] = None
 
 
+class ResultExternalEntity(BaseModel):
+    homeTeam: str
+    awayTeam: str
+    homeScore: int
+    awayScore: int
+    matchday: int
+
 class LeagueExternalEntity(BaseModel):
     name: str
     slug: str
     teams: List[TeamExternalEntity] = []
     logo: Optional[str] = None
+    results: Optional[List[ResultExternalEntity]] = []
 
 
 class LeagueInternalEntity(LeagueExternalEntity):
@@ -28,18 +36,9 @@ class LeagueInternalEntity(LeagueExternalEntity):
     teams: List[TeamInternalEntity] = []
 
 
-class ResultExternalEntity(BaseModel):
-    team_1: str
-    team_2: str
-    team_1_goals: int
-    team_2_goals: int
-    matchday: int
-
-
 class ResultInternalEntity(ResultExternalEntity):
     id: Optional[int] = None
-    data_provider_id: Optional[int] = None
-    league_id: str
+    data_provider_league_id: Optional[int] = None
 
 
 class AvailableLeaguesEntity(BaseModel):

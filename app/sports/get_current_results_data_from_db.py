@@ -2,7 +2,7 @@ from typing import List
 
 from sports.constants import AVAILABLE_LEAGUES
 from sports.entities import AvailableResultsEntity, ResultExternalEntity
-from sports.models import League
+from sports.models import League, Result
 
 
 def get_current_results_data() -> AvailableResultsEntity:
@@ -12,17 +12,23 @@ def get_current_results_data() -> AvailableResultsEntity:
             league = League.objects.get(slug=league_slug)
         except League.DoesNotExist:
             continue
-        results = league.results.all()
+        latest_matchday = get_latest_matchday(league_slug=league_slug)
+        results = league.results.filter(matchday=latest_matchday)
         league_results = []
         for result in results:
             result_data = ResultExternalEntity(
-                team_1=result.team_1,
-                team_2=result.team_2,
-                team_1_goals=result.team_1_goals,
-                team_2_goals=result.team_2_goals,
+                homeTeam=result.homeTeam,
+                awayTeam=result.awayTeam,
+                homeScore=result.homeScore,
+                awayScore=result.awayScore,
                 matchday=result.matchday,
             )
             league_results.append(result_data.dict())
         results_data[league_slug] = league_results
 
     return results_data
+
+
+def get_latest_matchday(league_slug:str) -> int:
+    matchdays: List = Result.objects.filter(league__slug=league_slug).distinct('matchday').values_list('matchday', flat=True)
+    return max(matchdays) if matchdays else 0
