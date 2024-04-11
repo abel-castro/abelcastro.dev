@@ -37,10 +37,10 @@ def add_api_football_related_data() -> AvailableLeaguesEntity:
         "https://media-4.api-sports.io/football/leagues/78.png"
     )
 
-    available_leagues_with_api_football_data.austrian_bundesliga.data_provider_id = 218
-    available_leagues_with_api_football_data.austrian_bundesliga.logo = (
-        "https://media-4.api-sports.io/football/leagues/218.png"
-    )
+    # available_leagues_with_api_football_data.austrian_bundesliga.data_provider_id = 218
+    # available_leagues_with_api_football_data.austrian_bundesliga.logo = (
+    #     "https://media-4.api-sports.io/football/leagues/218.png"
+    # )
 
     available_leagues_with_api_football_data.french_ligue_1.data_provider_id = 61
     available_leagues_with_api_football_data.french_ligue_1.logo = (

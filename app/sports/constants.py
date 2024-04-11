@@ -13,9 +13,9 @@ AVAILABLE_LEAGUES = AvailableLeaguesEntity(
     german_bundesliga=LeagueInternalEntity(
         name="German Bundesliga", slug="german_bundesliga"
     ),
-    austrian_bundesliga=LeagueInternalEntity(
-        name="Austrian Bundesliga", slug="austrian_bundesliga"
-    ),
+    # austrian_bundesliga=LeagueInternalEntity(
+    #     name="Austrian Bundesliga", slug="austrian_bundesliga"
+    # ),
     french_ligue_1=LeagueInternalEntity(
         name="Ligue 1",
         slug="french_ligue_1",

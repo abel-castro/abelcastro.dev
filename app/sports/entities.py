@@ -46,7 +46,7 @@ class AvailableLeaguesEntity(BaseModel):
     spanish_la_liga: LeagueInternalEntity
     italian_seria_a: LeagueInternalEntity
     german_bundesliga: LeagueInternalEntity
-    austrian_bundesliga: LeagueInternalEntity
+    # austrian_bundesliga: LeagueInternalEntity
     french_ligue_1: LeagueInternalEntity
     portuguese_primeira_liga: LeagueInternalEntity
 
@@ -56,6 +56,6 @@ class AvailableResultsEntity(BaseModel):
     spanish_la_liga: Optional[List[ResultExternalEntity]] = []
     italian_seria_a: Optional[List[ResultExternalEntity]] = []
     german_bundesliga: Optional[List[ResultExternalEntity]] = []
-    austrian_bundesliga: Optional[List[ResultExternalEntity]] = []
+    # austrian_bundesliga: Optional[List[ResultExternalEntity]] = []
     french_ligue_1: Optional[List[ResultExternalEntity]] = []
     portuguese_primeira_liga: Optional[List[ResultExternalEntity]] = []

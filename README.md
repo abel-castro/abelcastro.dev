@@ -11,7 +11,7 @@ This blog only uses django core functionalities and the great Markdown editor
 This project also provides a REST-API with following endpoints:
 
 - `GET /api/posts/` - return all posts
-- `GET /api/sports/standings/` - return the current standings of some of the most important football competitions in Europe
+- `GET /api/sports/standings/` - return the current standings and results of some of the most important football competitions in Europe
   ```json
     [
       {
@@ -26,13 +26,23 @@ This project also provides a REST-API with following endpoints:
               "logo": "https://media-4.api-sports.io/football/teams/50.png"
           },
           ...
-        ]
+        ],
+        "results": [
+          {
+            "matchday": 1,
+            "team_1": "Tottenham Hotspur",
+            "team_1_goals": 1,
+            "team_2": "Arsenal",
+            "team_2_goals": 2
+          },
+          ...
+        ] 
       },
       ...
     ]
 
   ```
-- `GET /api/sports/results/` - (WIP) return results for the last matchday of some of the most important football competitions in Europe
+- `GET /api/sports/results/` - return results for the last matchday of some of the most important football competitions in Europe
   ```json
   {
       "english_premier_league": [
