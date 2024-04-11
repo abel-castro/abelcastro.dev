@@ -20,3 +20,15 @@ class Team(models.Model):
 
     def __str__(self) -> str:
         return f"{self.name}"
+
+
+class Result(models.Model):
+    homeTeam = models.CharField(max_length=100)
+    awayTeam = models.CharField(max_length=100)
+    homeScore = models.PositiveSmallIntegerField()
+    awayScore = models.PositiveSmallIntegerField()
+    matchday = models.PositiveSmallIntegerField()
+    league = models.ForeignKey(League, on_delete=models.CASCADE, related_name="results")
+
+    def __str__(self) -> str:
+        return f"{self.homeTeam} {self.homeScore} - {self.awayScore} {self.awayTeam} at matchday {self.matchday}"

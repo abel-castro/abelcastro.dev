@@ -1,7 +1,6 @@
-from api.views import PostListAPI, StandingsAPI
+from api.views import PostListAPI, ResultsAPI, StandingsAPI
 from django.urls import path
 from django.views.decorators.cache import cache_page
-
 
 app_name = "api"
 
@@ -11,5 +10,10 @@ urlpatterns = [
         "sports/standings/",
         view=cache_page(60 * 60)(StandingsAPI.as_view()),
         name="get_standings",
+    ),
+    path(
+        "sports/results/",
+        view=cache_page(60 * 60)(ResultsAPI.as_view()),
+        name="get_results",
     ),
 ]
