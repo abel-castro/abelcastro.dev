@@ -22,6 +22,7 @@ class ResultExternalEntity(BaseModel):
     awayScore: int
     matchday: int
 
+
 class LeagueExternalEntity(BaseModel):
     name: str
     slug: str
