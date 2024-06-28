@@ -2,7 +2,11 @@ from typing import List
 
 from sports.get_current_results_data_from_db import get_latest_matchday
 from sports.constants import AVAILABLE_LEAGUES
-from sports.entities import LeagueExternalEntity, ResultExternalEntity, TeamExternalEntity
+from sports.entities import (
+    LeagueExternalEntity,
+    ResultExternalEntity,
+    TeamExternalEntity,
+)
 from sports.models import League
 
 
@@ -27,7 +31,7 @@ def get_current_standings_data() -> List[LeagueExternalEntity]:
                     logo=team.logo,
                 ).dict()
             )
-        
+
         # results
         latest_matchday = get_latest_matchday(league_slug=league_slug)
         results = league.results.filter(matchday=latest_matchday)

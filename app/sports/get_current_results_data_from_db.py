@@ -29,6 +29,10 @@ def get_current_results_data() -> AvailableResultsEntity:
     return results_data
 
 
-def get_latest_matchday(league_slug:str) -> int:
-    matchdays: List = Result.objects.filter(league__slug=league_slug).distinct('matchday').values_list('matchday', flat=True)
+def get_latest_matchday(league_slug: str) -> int:
+    matchdays: List = (
+        Result.objects.filter(league__slug=league_slug)
+        .distinct("matchday")
+        .values_list("matchday", flat=True)
+    )
     return max(matchdays) if matchdays else 0
