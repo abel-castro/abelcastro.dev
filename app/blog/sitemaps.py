@@ -15,16 +15,16 @@ class PostSitemap(Sitemap):
         return obj.date
 
     def location(self, obj):
-        return f"/{obj.slug}"
+        return f"/blog/{obj.slug}"
 
 
 class StaticSitemap(Sitemap):
-    changefreq = "monthly"
+    changefreq = "weekly"
     priority = 0.8
     protocol = "https"
 
     def items(self):
-        return ["about_me"]
+        return ["home"]
 
     def location(self, item):
         return reverse(item)
