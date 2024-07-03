@@ -2,34 +2,34 @@
  * Globals
  */
 
-a{
+a {
   text-decoration: none;
 }
 
-.default-link{
+.default-link {
   color: #fcbf1e !important;
 }
 
-.default-link:hover{
+.default-link:hover {
   text-decoration: underline;
   color: #fcbf1e !important;
 }
 
-.montserrat{
-  font-family: 'Montserrat', sans-serif;
+.montserrat {
+  font-family: "Montserrat", sans-serif;
 }
 
-.yellow-color{
+.yellow-color {
   color: #fcbf1e !important;
 }
 
-.footer-link{
+.footer-link {
   font-weight: bold;
   text-decoration: none;
-  color: rgba(255,255,255,.5)!important;
+  color: rgba(255, 255, 255, 0.5) !important;
 }
 
-.img-circle{
+.img-circle {
   border-radius: 100%;
 }
 
@@ -47,32 +47,32 @@ a{
  * Header
  */
 
-#page-title{
-  font-size: 2.0rem;
-  font-family: 'Montserrat', sans-serif;
+#page-title {
+  font-size: 2rem;
+  font-family: "Montserrat", sans-serif;
 }
 
-#page-title #avatar{
+#page-title #avatar {
   height: 3.75rem;
 }
 
-.angular-logo{
-  width: 20px; 
+.angular-logo {
+  width: 20px;
   filter: brightness(0.6);
   vertical-align: sub;
 }
 
 .nav-masthead .nav-link {
-  padding: .25rem 0;
+  padding: 0.25rem 0;
   font-weight: 700;
-  color: rgba(255, 255, 255, .5);
+  color: rgba(255, 255, 255, 0.5);
   background-color: transparent;
-  border-bottom: .25rem solid transparent;
+  border-bottom: 0.25rem solid transparent;
 }
 
 .nav-masthead .nav-link:hover,
 .nav-masthead .nav-link:focus {
-  border-bottom-color: rgba(255, 255, 255, .25);
+  border-bottom-color: rgba(255, 255, 255, 0.25);
 }
 
 .nav-masthead .nav-link + .nav-link {
@@ -84,59 +84,58 @@ a{
   border-bottom-color: #fcbf1e;
 }
 
-#posts-search-input-container{
+#posts-search-input-container {
   padding: 0 0.5rem;
 }
 
-#posts-search{
+#posts-search {
   width: 5rem;
   transition: width 0.5s;
   margin-right: 0.625rem;
 }
 
-#posts-search:focus{
+#posts-search:focus {
   width: 15rem;
 }
 
-@media screen and (max-width:768px) {
-  #posts-search-input-container{
+@media screen and (max-width: 768px) {
+  #posts-search-input-container {
     width: 100%;
     text-align: center;
   }
-  #posts-search{
+  #posts-search {
     display: none;
   }
-
 }
 
-.post-container{
+.post-container {
   padding: 2rem 0;
 }
 
-.post-container a{
+.post-container a {
   color: #fcbf1e !important;
 }
 
-.post-container img{
+.post-container img {
   width: 100%;
 }
 
-.post-container a:hover{
+.post-container a:hover {
   text-decoration: underline;
 }
 
-.post-title{
+.post-title {
   color: #fcbf1e;
 }
 
-hr.post-separator{
+hr.post-separator {
   margin-top: 5rem;
   border: none;
   height: 1px;
   background-image: linear-gradient(to right, #212529, white, #212529);
 }
 hr.post-separator::after {
-  content: '§';
+  content: "§";
   display: inline-block;
   position: absolute;
   left: 50%;
@@ -146,6 +145,24 @@ hr.post-separator::after {
   background-color: #212529;
 }
 
-#the-footer{
+#the-footer {
   padding-top: 3rem;
+}
+
+/*
+ * Home
+ */
+
+.divider {
+  width: 100%;
+  height: 3rem;
+  background-color: rgba(0, 0, 0, 0.1);
+  border: solid rgba(0, 0, 0, 0.15);
+  border-width: 1px 0;
+  box-shadow: inset 0 0.5em 1.5em rgba(0, 0, 0, 0.1),
+    inset 0 0.125em 0.5em rgba(0, 0, 0, 0.15);
+}
+
+#github-projects-icon {
+  font-size: 150px;
 }

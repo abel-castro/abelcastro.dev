@@ -1,91 +1,46 @@
 {% load static %}
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" class="h-100">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="{{ meta_description }}">
-    <meta name="author" content="Abel Castro">
-    <title>{{ page_title }}</title>
+  {% include "base_head.html" %}
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+  <body class="text-white bg-dark">
+    <header class="mb-auto p-4">
+      <div>
+        {% include "page_title.html" %}
+        <nav class="nav nav-masthead justify-content-center float-md-end">
+          {% if request.resolver_match.url_name == 'post_list' %}
+          <span id="posts-search-input-container">
+            <input
+              id="posts-search"
+              class="form-control"
+              type="text"
+              name="search_term"
+              placeholder="Search in Posts"
+              hx-get="{% url 'search' %}"
+              hx-trigger="keyup changed delay:500ms"
+              hx-target="#main-container"
+              hx-indicator=".htmx-indicator"
+              hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+            />
+          </span>
+          {% endif %}
+          <a class="nav-link" href="/#about-me">About me</a>
+          <a class="nav-link" href="/#my-blog">Blog</a>
+          <a class="nav-link" href="/#projects">Projects</a>
+          <a
+            class="nav-link"
+            target="_blank"
+            href="https://github.com/abel-castro"
+            ><i class="bi bi-github"></i
+          ></a>
+        </nav>
+      </div>
+    </header>
 
-    <!-- Favicons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ MEDIA_URL }}favicons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ MEDIA_URL }}favicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ MEDIA_URL }}favicons/favicon-16x16.png">
-    <link rel="manifest" href="{{ MEDIA_URL }}favicons/site.webmanifest">
+    <main>{% block main %} {% endblock %}</main>
 
-    <!-- Markdown -->
-    <link href="{% static 'plugins/css/ace.min.css' %}" type="text/css" media="all" rel="stylesheet" />
-    <link href="{% static 'martor/css/martor.bootstrap.min.css' %}" type="text/css" media="all" rel="stylesheet" />
-
-    <!-- Other CSS -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
-    <link href="{% static "main.css" %}" rel="stylesheet">
-    <script src="https://unpkg.com/htmx.org@1.5.0"></script>
-    </script>
-  </head>
-  <body class="d-flex {% if request.resolver_match.url_name != "post_list" %}h-100{% endif %} text-white bg-dark">
-
-    <div class="d-flex w-100 h-100 p-3 mx-auto flex-column">
-      <header class="mb-auto">
-        <div>
-          <h1 id="page-title" class="float-md-start text-center"><img id="avatar" src="{{ MEDIA_URL }}abelcastro-avatar.png" alt="abelcastro.dev avatar"> castro.dev</h1>
-          <nav class="nav nav-masthead justify-content-center float-md-end">
-            {% if request.resolver_match.url_name == 'post_list' %}
-            <span id="posts-search-input-container">
-                <input
-                   id="posts-search"
-                   class="form-control" type="text"
-                   name="search_term" placeholder="Search in Posts"
-                   hx-get="{% url 'search' %}"
-                   hx-trigger="keyup changed delay:500ms"
-                   hx-target="#main-container"
-                   hx-indicator=".htmx-indicator"
-                   hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
-                >
-            </span>
-            {% endif %}
-            <a class="nav-link {% if request.resolver_match.url_name == "post_list" or request.resolver_match.url_name == "post" %}active{% endif %}" aria-current="page" href="{% url "post_list" %}">Blog</a>
-            <a class="nav-link {% if request.resolver_match.url_name == "about_me" %}active{% endif %}" href="{% url "about_me" %}">About Me</a>
-            <a class="nav-link" href="https://ng.abelcastro.dev" target="_blank">Angular</a>
-            <a class="nav-link" target="_blank" href="https://github.com/abel-castro"><i class="bi bi-github"></i></a>
-          </nav>
-        </div>
-      </header>
-
-      <main>
-        <div id="main-container" class="container">
-            {% block main %}
-            {% endblock %}
-        </div>
-      </main>
-
-      <footer id="the-footer" class="mt-auto text-center text-white-50">
-        <p> Abel Castro {% now "Y" %} - checkout the source code of this blog on <a href="https://github.com/abel-castro/abelcastro.dev" class="footer-link" target="_blank"> GitHub</a> - <a class="footer-link" href="{% url "privacy_policy" %}">Privacy Policy</a> </p>
-      </footer>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="{% static 'plugins/js/highlight.min.js' %}"></script>
-    <script>
-    function highlightBlocks(){
-        $('.post-content pre').each(function(i, block){
-            hljs.highlightBlock(block);
-        });
-    }
-
-    highlightBlocks();
-
-    htmx.onLoad(function(content) {
-        highlightBlocks();
-    });
-    </script>
+    <footer id="the-footer" class="mt-auto text-center text-white-50 pb-2">
+      {% include "footer_text.html" %}
+    </footer>
   </body>
 </html>

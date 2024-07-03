@@ -1,0 +1,47 @@
+{% load static %}
+<!doctype html>
+<html lang="en" class="h-100">
+  {% include "base_head.html" %}
+
+  <body class="d-flex {% if request.resolver_match.url_name != "post_list" %}h-100{% endif %} text-white bg-dark">
+
+    <div class="d-flex w-100 h-100 p-3 mx-auto flex-column">
+      <header class="mb-auto">
+        <div>
+          {% include "page_title.html" %}
+          <nav class="nav nav-masthead justify-content-center float-md-end">
+            {% if request.resolver_match.url_name == 'post_list' %}
+            <span id="posts-search-input-container">
+                <input
+                   id="posts-search"
+                   class="form-control" type="text"
+                   name="search_term" placeholder="Search in Posts"
+                   hx-get="{% url 'search' %}"
+                   hx-trigger="keyup changed delay:500ms"
+                   hx-target="#main-container"
+                   hx-indicator=".htmx-indicator"
+                   hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+                >
+            </span>
+            {% endif %}
+            <a class="nav-link" target="_blank" href="{% url "home" %}">About me</a>
+            <a class="nav-link" target="_blank" href="https://github.com/abel-castro"><i class="bi bi-github"></i></a>
+          </nav>
+        </div>
+      </header>
+
+      <main>
+        <div id="main-container" class="container">
+            {% block main_blog %}
+            {% endblock %}
+        </div>
+      </main>
+
+      <footer id="the-footer" class="mt-auto text-center text-white-50">
+        {% include "footer_text.html" %}
+      </footer>
+    </div>
+    
+    {% include "blog/scripts.html" %}
+  </body>
+</html>

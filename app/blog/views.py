@@ -1,7 +1,7 @@
 from basic_analytics_tracker.mixins import TrackingMixin
 from blog.constants import BLOG_META_DESCRIPTION
 from blog.models import Post
-from django.views.generic import DetailView, ListView, TemplateView
+from django.views.generic import DetailView, ListView, TemplateView, RedirectView
 
 
 class PostsBaseView(ListView):
@@ -11,7 +11,7 @@ class PostsBaseView(ListView):
 
 
 class PostsListView(TrackingMixin, PostsBaseView):
-    template_name = "post_list.html"
+    template_name = "blog/post_list.html"
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(object_list=object_list, **kwargs)
@@ -20,8 +20,18 @@ class PostsListView(TrackingMixin, PostsBaseView):
         return context
 
 
+class RedirectToNewBlogView(TrackingMixin, RedirectView):
+    permanent = True
+    query_string = True
+
+    def get_redirect_url(self, *args, **kwargs):
+        slug = kwargs.get("slug")
+        new_domain = "https://blog.abelcastro.dev"
+        return f"{new_domain}/{slug}/"
+
+
 class PostSearchView(PostsBaseView):
-    template_name = "post_search.html"
+    template_name = "blog/post_search.html"
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data()
@@ -38,11 +48,11 @@ class PostSearchView(PostsBaseView):
 
 
 class PostsLoadMoreView(PostsBaseView):
-    template_name = "load_more_posts.html"
+    template_name = "blog/load_more_posts.html"
 
 
 class PostDetailView(TrackingMixin, DetailView):
-    template_name = "post_detail.html"
+    template_name = "blog/post_detail.html"
     model = Post
     queryset = Post.objects.filter(published=True).prefetch_related("tags")
 
@@ -54,12 +64,12 @@ class PostDetailView(TrackingMixin, DetailView):
         return context
 
 
-class AboutMeView(TrackingMixin, TemplateView):
-    template_name = "about_me.html"
+class HomeView(TrackingMixin, TemplateView):
+    template_name = "home.html"
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(object_list=object_list, **kwargs)
-        context["page_title"] = "About me - Abel Castro"
+        context["page_title"] = "Abel Castro"
         context["meta_description"] = BLOG_META_DESCRIPTION
         return context
 

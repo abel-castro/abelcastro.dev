@@ -15,12 +15,13 @@ Including another URLconf
 """
 from blog.sitemaps import PostSitemap, StaticSitemap
 from blog.views import (
-    AboutMeView,
+    HomeView,
     PostDetailView,
     PostSearchView,
     PostsListView,
     PostsLoadMoreView,
     PrivacyPolicyView,
+    RedirectToNewBlogView,
 )
 from django.conf import settings
 from django.conf.urls.static import static
@@ -42,19 +43,24 @@ urlpatterns = [
         {"sitemaps": sitemaps},
         name="django.contrib.sitemaps.views.sitemap",
     ),
-    path("", cache_page(60 * 60)(PostsListView.as_view()), name="post_list"),
-    path("search/", PostSearchView.as_view(), name="search"),
-    path("more-posts/", PostsLoadMoreView.as_view(), name="more_posts"),
-    path("about-me/", cache_page(60 * 60)(AboutMeView.as_view()), name="about_me"),
+    path("", cache_page(60 * 60)(HomeView.as_view()), name="home"),
+    path("blog", cache_page(60 * 60)(PostsListView.as_view()), name="post_list"),
+    path("blog/search/", PostSearchView.as_view(), name="search"),
+    path("blog/more-posts/", PostsLoadMoreView.as_view(), name="more_posts"),
     path(
         "privacy-policy/",
         cache_page(60 * 60)(PrivacyPolicyView.as_view()),
         name="privacy_policy",
     ),
     path(
-        "<slug:slug>/",
+        "blog/<slug:slug>/",
         cache_page(60 * 60)(PostDetailView.as_view()),
         name="post_detail",
+    ),
+    path(
+        "<slug:slug>/",
+        RedirectToNewBlogView.as_view(),
+        name="redirect_to_new_blog",
     ),
     path("api/", include("api.urls", namespace="api")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

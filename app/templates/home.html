@@ -1,0 +1,165 @@
+{% extends "base.html" %} {% block main %}
+
+<div id="about-me" class="px-4 py-5">
+  <div class="col-lg-6 mx-auto lead">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+      <div class="col-10 col-sm-8 col-lg-6">
+        <img
+          loading="lazy"
+          class="img-circle d-block mx-lg-auto img-fluid"
+          src="{{ MEDIA_URL }}banana_lifting.jpg"
+          alt="Me lifting some bananas."
+        />
+      </div>
+      <div class="col-lg-6">
+        <p class="lead">
+          Hi! I’m <span class="fw-bold">Abel</span>, a
+          <span class="fw-bold">Full Stack Developer</span> who loves coding and
+          technology in generall. 
+        </p>  
+        <p class="lead">
+          That guy in the picture is me, back in 2008, before I began to code.
+        </p>
+        <p class="lead">
+          I come from the beautiful Canary Island La Palma but for several years
+          now, I have made Austria my home.
+        </p>
+        <p>  
+          Throughout most of my career, I was quite focused on developing with 
+          <span class="fw-bold">Python</span> and <span class="fw-bold">Django</span>, but in the last years, I have been learned to love 
+          <span class="fw-bold">TypeScript</span> and frameworks like <span class="fw-bold">Next.js</span> 💙.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div id="my-blog" class="px-4 my-5">
+  <h2 class="display-5 fw-bold text-center">My blog</h2>
+  <div class="col-lg-6 py-5 mx-auto lead">
+    <p>
+      In my blog I (and LLMs 🤖) write about coding-related topics.
+    </p>
+    <p>
+      The primary goal of my blog has always been to experiment and explore new
+      technologies rather than getting more views.
+    </p>
+    <p>
+      The initial version of my blog was launched in 2021 using Django, Django
+      templates, and Bootstrap. Over time, the blog evolved significantly: it
+      incorporated htmx and even implemented a REST API. 
+      This version is still live and can be found at https://abelcastro.dev/blog.
+    </p>
+    <p>  
+      There is also an Angular
+      version (which may no longer be functional) in https://ng.abelcastro.dev.
+    </p>
+    <p>
+      The latest iteration was developed with Next.js and Tailwind, 
+      and this is the version I recommend you visit.
+    </p>
+    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mt-4 mb-4">
+      <a
+        href="https://blog.abelcastro.dev"
+        class="btn btn-primary btn-lg px-4 gap-3"
+        >blog.abelcastro.dev 🚀 </a
+      >
+    </div>
+    <p>Please note that all opinions expressed on the blog are my own.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div id="projects" class="my-5">
+  <h2 class="display-5 fw-bold text-center">Projects</h2>
+  <div class="album py-5">
+    <div class="p-4">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 text-white">
+        <div class="col">
+          <div class="card h-100 bg-light bg-gradient shadow-sm">
+            <img
+              alt="Sports Dashboard 2.0"
+              src="https://i.imgur.com/Zchxi4B.png"
+              title="Sports Dashboard"
+              height="225"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Sports Dashboard</h5>
+              <p class="card-text">
+                Displays the results and standings of the most popular sports
+                leagues. Made with an Angular frontend and a Django backend.
+              </p>
+              <p class="card-text">
+                You can find more details in
+                <a
+                  href="https://blog.abelcastro.dev/sports-dashboard-displays-last-matchday-results"
+                  target="_blank"
+                  >this blog post</a
+                >.
+              </p>
+              <div class="d-sm-flex justify-content-sm-center ">
+                <a
+                  href="https://ng.abelcastro.dev/sports-dashboard"
+                  target="_blank"
+                  class="btn btn-primary"
+                  >Go to Sports Dashboard ⚽️</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card h-100 bg-light bg-gradient shadow-sm">
+            <img
+              alt="Basic analytics"
+              src="https://i.imgur.com/3NqGi9A.png"
+              title="Basic analytics"
+              height="225"
+            />
+
+            <div class="card-body">
+              <h5 class="card-title">Basic Analytics</h5>
+              <p class="card-text">
+                My self made and hosted alternative to Google Analytics. Made
+                with Django, DRF, Bootstrap and Chart.js.
+              </p>
+              <p class="card-text">
+                You can find more details in
+                <a
+                  href="https://blog.abelcastro.dev/my-self-made-hosted-google-analytics-alternative"
+                  target="_blank"
+                  >this blog post</a
+                >.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card h-100 bg-light bg-gradient shadow-sm">
+            <i id="github-projects-icon" class="bi bi-github text-center"></i>
+            <div class="card-body">
+              <h5 class="card-title">Other Stuff</h5>
+              <p class="card-text">
+                I regularly work on other projects and experiment with new ideas.
+                Check out my 
+                <a
+                  href="https://github.com/abel-castro"
+                  target="_blank">
+                  GitHub profile</a> to see what I’ve been up to.
+              </p>
+          
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
