@@ -2,6 +2,7 @@ from basic_analytics_tracker.mixins import TrackingMixin
 from blog.constants import BLOG_META_DESCRIPTION
 from blog.models import Post
 from django.views.generic import DetailView, ListView, TemplateView, RedirectView
+from django.http import HttpResponse
 
 
 class PostsBaseView(ListView):
@@ -82,3 +83,11 @@ class PrivacyPolicyView(TrackingMixin, TemplateView):
         context["page_title"] = "Privacy Policy - Abel Castro"
         context["meta_description"] = BLOG_META_DESCRIPTION
         return context
+
+
+def robots_txt(request):
+    lines = [
+        "User-agent: *",
+        "Disallow: /blog/",
+    ]
+    return HttpResponse("\n".join(lines), content_type="text/plain")

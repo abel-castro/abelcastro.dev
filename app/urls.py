@@ -22,6 +22,7 @@ from blog.views import (
     PostsLoadMoreView,
     PrivacyPolicyView,
     RedirectToNewBlogView,
+    robots_txt,
 )
 from django.conf import settings
 from django.conf.urls.static import static
@@ -52,6 +53,7 @@ urlpatterns = [
         cache_page(60 * 60)(PrivacyPolicyView.as_view()),
         name="privacy_policy",
     ),
+    path("robots.txt", robots_txt),
     path(
         "blog/<slug:slug>/",
         cache_page(60 * 60)(PostDetailView.as_view()),
