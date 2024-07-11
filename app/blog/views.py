@@ -89,5 +89,6 @@ def robots_txt(request):
     lines = [
         "User-agent: *",
         "Disallow: /blog/",
+        "Disallow: /api/",
     ]
     return HttpResponse("\n".join(lines), content_type="text/plain")
