@@ -194,7 +194,7 @@ MARTOR_ENABLE_CONFIGS = {
 # CORS
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ALLOW_CREDENTIALS = True
-CORS_ORIGIN_WHITELIST = ("https://ng.abelcastro.dev",)
+CORS_ORIGIN_WHITELIST = ("https://ng.abelcastro.dev", "https://blog.abelcastro.dev")
 
 BASIC_ANALYTICS_URL = os.environ.get("BASIC_ANALYTICS_URL")
 BASIC_ANALYTICS_ID = os.environ.get("BASIC_ANALYTICS_ID")
