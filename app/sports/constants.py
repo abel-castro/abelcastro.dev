@@ -1,6 +1,6 @@
 from sports.entities import AvailableLeaguesEntity, LeagueInternalEntity
 
-CURRENT_SEASON = 2023
+CURRENT_SEASON = 2024
 
 
 AVAILABLE_LEAGUES = AvailableLeaguesEntity(

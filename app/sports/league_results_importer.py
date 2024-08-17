@@ -13,6 +13,7 @@ from sports.models import League, Result
 def save_team_data_to_db(
     results_data: List[ResultInternalEntity], league: League
 ) -> None:
+    
     for result_entity in results_data:
         Result.objects.update_or_create(
             homeTeam=result_entity.homeTeam,
@@ -24,9 +25,9 @@ def save_team_data_to_db(
                 "matchday": result_entity.matchday,
             },
         )
-    if result_entity:
-        league.updated_at = timezone.now()
-        league.save()
+        if result_entity:
+            league.updated_at = timezone.now()
+            league.save()
 
 
 class LeagueResultsImporter:
