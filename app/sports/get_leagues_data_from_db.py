@@ -1,12 +1,9 @@
 from typing import List
 
-from sports.get_current_results_data_from_db import get_latest_matchday
 from sports.constants import AVAILABLE_LEAGUES
-from sports.entities import (
-    LeagueExternalEntity,
-    ResultExternalEntity,
-    TeamExternalEntity,
-)
+from sports.entities import (LeagueExternalEntity, ResultExternalEntity,
+                             TeamExternalEntity)
+from sports.get_current_results_data_from_db import get_latest_matchday
 from sports.models import League
 
 

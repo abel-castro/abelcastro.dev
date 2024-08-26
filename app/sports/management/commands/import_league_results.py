@@ -1,14 +1,13 @@
 from datetime import timedelta
+
 from django.core.management.base import BaseCommand
 from django.utils import timezone
-from sports.utils import get_date_30_days_ago
 from sports.constants import CURRENT_SEASON
 from sports.data_providers.api_football_data_provider import (
-    AVAILABLE_LEAGUES_WITH_API_FOOTBALL_DATA,
-    ApiFootballDataProvider,
-)
+    AVAILABLE_LEAGUES_WITH_API_FOOTBALL_DATA, ApiFootballDataProvider)
 from sports.league_results_importer import LeagueResultsImporter
 from sports.models import Result
+from sports.utils import get_date_30_days_ago
 
 
 class Command(BaseCommand):

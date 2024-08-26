@@ -14,16 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from blog.sitemaps import PostSitemap, StaticSitemap
-from blog.views import (
-    HomeView,
-    PostDetailView,
-    PostSearchView,
-    PostsListView,
-    PostsLoadMoreView,
-    PrivacyPolicyView,
-    RedirectToNewBlogView,
-    robots_txt,
-)
+from blog.views import (HomeView, PostDetailView, PostSearchView,
+                        PostsListView, PostsLoadMoreView, PrivacyPolicyView,
+                        RedirectToNewBlogView, robots_txt)
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
@@ -31,6 +24,8 @@ from django.contrib.sitemaps.views import sitemap
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path
 from django.views.decorators.cache import cache_page
+from drf_spectacular.views import (SpectacularAPIView, SpectacularRedocView,
+                                   SpectacularSwaggerView)
 
 sitemaps = {"posts": PostSitemap, "static": StaticSitemap}
 
@@ -44,6 +39,19 @@ urlpatterns = [
         {"sitemaps": sitemaps},
         name="django.contrib.sitemaps.views.sitemap",
     ),
+    # API docs
+    path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
+    path(
+        "api/docs/",
+        SpectacularSwaggerView.as_view(url_name="schema"),
+        name="swagger-ui",
+    ),
+    path(
+        "api/docs/redoc/", SpectacularRedocView.as_view(url_name="schema"), name="redoc"
+    ),
+    # API
+    path("api/", include("api.urls", namespace="api")),
+    # Blog
     path("", cache_page(60 * 60)(HomeView.as_view()), name="home"),
     path("blog", cache_page(60 * 60)(PostsListView.as_view()), name="post_list"),
     path("blog/search/", PostSearchView.as_view(), name="search"),
@@ -64,7 +72,6 @@ urlpatterns = [
         RedirectToNewBlogView.as_view(),
         name="redirect_to_new_blog",
     ),
-    path("api/", include("api.urls", namespace="api")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

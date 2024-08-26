@@ -1,4 +1,4 @@
-from sports.entities import TeamInternalEntity, ResultInternalEntity
+from sports.entities import ResultInternalEntity, TeamInternalEntity
 
 TEST_TEAM_STANDINGS_ENTITY_LIST = [
     TeamInternalEntity(

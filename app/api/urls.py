@@ -1,4 +1,4 @@
-from api.views import PostListAPI, PostDetailAPI, ResultsAPI, StandingsAPI
+from api.views import PostDetailAPI, PostListAPI, ResultsAPI, StandingsAPI
 from django.urls import path
 from django.views.decorators.cache import cache_page
 

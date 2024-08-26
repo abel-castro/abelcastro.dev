@@ -1,9 +1,7 @@
 import pytest
 from sports.entities import LeagueExternalEntity, ResultExternalEntity
-from sports.get_current_results_data_from_db import (
-    get_current_results_data,
-    get_latest_matchday,
-)
+from sports.get_current_results_data_from_db import (get_current_results_data,
+                                                     get_latest_matchday)
 from sports.models import League, Result, Team
 
 

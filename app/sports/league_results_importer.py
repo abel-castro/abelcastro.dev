@@ -2,18 +2,14 @@ from typing import List
 
 from django.utils import timezone
 from sports.data_providers.interfaces import DataProviderInterface
-from sports.entities import (
-    AvailableLeaguesEntity,
-    LeagueInternalEntity,
-    ResultInternalEntity,
-)
+from sports.entities import (AvailableLeaguesEntity, LeagueInternalEntity,
+                             ResultInternalEntity)
 from sports.models import League, Result
 
 
 def save_team_data_to_db(
     results_data: List[ResultInternalEntity], league: League
 ) -> None:
-    
     for result_entity in results_data:
         Result.objects.update_or_create(
             homeTeam=result_entity.homeTeam,

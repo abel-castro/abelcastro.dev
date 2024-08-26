@@ -1,8 +1,9 @@
 from basic_analytics_tracker.mixins import TrackingMixin
 from blog.constants import BLOG_META_DESCRIPTION
 from blog.models import Post
-from django.views.generic import DetailView, ListView, TemplateView, RedirectView
 from django.http import HttpResponse
+from django.views.generic import (DetailView, ListView, RedirectView,
+                                  TemplateView)
 
 
 class PostsBaseView(ListView):

@@ -10,64 +10,8 @@ This blog only uses django core functionalities and the great Markdown editor
 
 ## API
 
-This project also provides a REST-API with following endpoints:
-
-- `GET /api/posts/` - return all posts
-- `GET /api/posts/<slug>` - return one post
-- `GET /api/sports/standings/` - return the current standings and results of some of the most important football competitions in Europe
-
-  ```json
-    [
-      {
-        "name": "Premier League",
-        "slug": "english_premier_league",
-        "logo": "https://media-4.api-sports.io/football/leagues/39.png",
-        "teams": [
-          {
-              "position": 1,
-              "name": "Manchester City",
-              "points": 27,
-              "logo": "https://media-4.api-sports.io/football/teams/50.png"
-          },
-          ...
-        ],
-        "results": [
-          {
-            "matchday": 1,
-            "team_1": "Tottenham Hotspur",
-            "team_1_goals": 1,
-            "team_2": "Arsenal",
-            "team_2_goals": 2
-          },
-          ...
-        ]
-      },
-      ...
-    ]
-
-  ```
-
-- `GET /api/sports/results/` - return results for the last matchday of some of the most important football competitions in Europe
-  ```json
-  {
-      "english_premier_league": [
-        {
-          "matchday": 1,
-          "homeTeam": "Tottenham Hotspur",
-          "homeScore": 1,
-          "awayTeam": "Arsenal",
-          "awayScore": 2
-        },
-        ...
-      ],
-      "spanish_la_liga": [...],
-      "italian_seria_a": [...],
-      "german_bundesliga": [...],
-      "austrian_bundesliga": [...],
-      "french_ligue_1": [...],
-      "portuguese_primeira_liga": [...]
-  }
-  ```
+This project provides a REST-API for accessing the blog and sports-dashboard data.
+See the documentation here: https://abelcastro.dev/api/docs/ (swagger-ui) or https://abelcastro.dev/api/docs/redoc/ (redoc)
 
 ## Development
 

@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "corsheaders",
     "basic_analytics_tracker",
+    "drf_spectacular",
     # project apps
     "blog",
     "sports",
@@ -199,6 +200,17 @@ CORS_ORIGIN_WHITELIST = ("https://ng.abelcastro.dev", "https://blog.abelcastro.d
 BASIC_ANALYTICS_URL = os.environ.get("BASIC_ANALYTICS_URL")
 BASIC_ANALYTICS_ID = os.environ.get("BASIC_ANALYTICS_ID")
 
+# REST FRAMEWORK
+REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "abelcastro.dev API docs",
+    "DESCRIPTION": "API docs for the blog and sports-dashboard endpoints",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
+}
 
 # Sports
 API_FOOTBAL_KEY = os.environ.get("API_FOOTBAL_KEY")

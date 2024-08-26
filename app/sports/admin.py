@@ -1,5 +1,5 @@
 from django.contrib import admin
-from sports.models import League, Team, Result
+from sports.models import League, Result, Team
 
 
 class LeagueModelAdmin(admin.ModelAdmin):

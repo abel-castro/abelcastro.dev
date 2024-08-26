@@ -1,6 +1,7 @@
 from datetime import date
-from sports.utils import get_date_30_days_ago
+
 from freezegun import freeze_time
+from sports.utils import get_date_30_days_ago
 
 
 @freeze_time("2024-03-30")
