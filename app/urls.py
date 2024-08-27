@@ -13,8 +13,6 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from drf_spectacular.views import (SpectacularAPIView, SpectacularRedocView,
-                                   SpectacularSwaggerView)
 
 from blog.sitemaps import StaticSitemap
 from blog.views import (HomeView, PrivacyPolicyView, RedirectToNewBlogPostView,
@@ -26,6 +24,8 @@ from django.contrib.sitemaps.views import sitemap
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path
 from django.views.decorators.cache import cache_page
+from drf_spectacular.views import (SpectacularAPIView, SpectacularRedocView,
+                                   SpectacularSwaggerView)
 
 sitemaps = {"static": StaticSitemap}
 
