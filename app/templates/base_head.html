@@ -39,6 +39,8 @@
   />
   <link rel="manifest" href="{{ MEDIA_URL }}favicons/site.webmanifest" />
 
+  {% comment %}
+  {# as the blog is deactivated these libraries are not needed anymore  #}
   <!-- Markdown -->
   <link
     href="{% static 'plugins/css/ace.min.css' %}"
@@ -52,6 +54,8 @@
     media="all"
     rel="stylesheet"
   />
+  <script src="https://unpkg.com/htmx.org@1.5.0"></script>
+  {% endcomment %}
 
   <!-- Other CSS -->
   <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -60,6 +64,4 @@
     rel="stylesheet"
   />
   <link href="{% static "main.css" %}" rel="stylesheet">
-  <script src="https://unpkg.com/htmx.org@1.5.0"></script>
-  <script type="text/javascript"></script>
 </head>

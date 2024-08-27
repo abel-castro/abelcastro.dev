@@ -13,9 +13,11 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from blog.sitemaps import PostSitemap, StaticSitemap
-from blog.views import (HomeView, PostDetailView, PostSearchView,
-                        PostsListView, PostsLoadMoreView, PrivacyPolicyView,
+from drf_spectacular.views import (SpectacularAPIView, SpectacularRedocView,
+                                   SpectacularSwaggerView)
+
+from blog.sitemaps import StaticSitemap
+from blog.views import (HomeView, PrivacyPolicyView, RedirectToNewBlogPostView,
                         RedirectToNewBlogView, robots_txt)
 from django.conf import settings
 from django.conf.urls.static import static
@@ -24,14 +26,12 @@ from django.contrib.sitemaps.views import sitemap
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path
 from django.views.decorators.cache import cache_page
-from drf_spectacular.views import (SpectacularAPIView, SpectacularRedocView,
-                                   SpectacularSwaggerView)
 
-sitemaps = {"posts": PostSitemap, "static": StaticSitemap}
+sitemaps = {"static": StaticSitemap}
 
 urlpatterns = [
     path(f"{settings.ADMIN_URL}/", admin.site.urls),
-    path("martor/", include("martor.urls")),
+    # path("martor/", include("martor.urls")),
     path("api-auth/", include("rest_framework.urls")),
     path(
         "sitemap.xml",
@@ -51,11 +51,11 @@ urlpatterns = [
     ),
     # API
     path("api/", include("api.urls", namespace="api")),
-    # Blog
+    # Home
     path("", cache_page(60 * 60)(HomeView.as_view()), name="home"),
-    path("blog", cache_page(60 * 60)(PostsListView.as_view()), name="post_list"),
-    path("blog/search/", PostSearchView.as_view(), name="search"),
-    path("blog/more-posts/", PostsLoadMoreView.as_view(), name="more_posts"),
+    # Blog (redirect to new blog.abelcastro.dev)
+    # path("blog/search/", PostSearchView.as_view(), name="search"),
+    # path("blog/more-posts/", PostsLoadMoreView.as_view(), name="more_posts"),
     path(
         "privacy-policy/",
         cache_page(60 * 60)(PrivacyPolicyView.as_view()),
@@ -63,13 +63,13 @@ urlpatterns = [
     ),
     path("robots.txt", robots_txt),
     path(
-        "blog/<slug:slug>/",
-        cache_page(60 * 60)(PostDetailView.as_view()),
-        name="post_detail",
+        "blog",
+        RedirectToNewBlogView.as_view(),
+        name="redirect_to_new_blog",
     ),
     path(
         "<slug:slug>/",
-        RedirectToNewBlogView.as_view(),
+        RedirectToNewBlogPostView.as_view(),
         name="redirect_to_new_blog",
     ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

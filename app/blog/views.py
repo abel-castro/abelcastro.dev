@@ -27,6 +27,14 @@ class RedirectToNewBlogView(TrackingMixin, RedirectView):
     query_string = True
 
     def get_redirect_url(self, *args, **kwargs):
+        return "https://blog.abelcastro.dev"
+
+
+class RedirectToNewBlogPostView(TrackingMixin, RedirectView):
+    permanent = True
+    query_string = True
+
+    def get_redirect_url(self, *args, **kwargs):
         slug = kwargs.get("slug")
         new_domain = "https://blog.abelcastro.dev"
         return f"{new_domain}/{slug}/"
