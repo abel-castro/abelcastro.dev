@@ -31,7 +31,7 @@ sitemaps = {"static": StaticSitemap}
 
 urlpatterns = [
     path(f"{settings.ADMIN_URL}/", admin.site.urls),
-    # path("martor/", include("martor.urls")),
+    path("martor/", include("martor.urls")),
     path("api-auth/", include("rest_framework.urls")),
     path(
         "sitemap.xml",
