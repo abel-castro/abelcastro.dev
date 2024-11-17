@@ -2,8 +2,7 @@ from basic_analytics_tracker.mixins import TrackingMixin
 from blog.constants import BLOG_META_DESCRIPTION
 from blog.models import Post
 from django.http import HttpResponse
-from django.views.generic import (DetailView, ListView, RedirectView,
-                                  TemplateView)
+from django.views.generic import DetailView, ListView, RedirectView, TemplateView
 
 
 class PostsBaseView(ListView):
@@ -37,7 +36,12 @@ class RedirectToNewBlogPostView(TrackingMixin, RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         slug = kwargs.get("slug")
         new_domain = "https://blog.abelcastro.dev"
-        return f"{new_domain}/{slug}/"
+
+        try:
+            Post.objects.get(slug=slug)
+            return f"{new_domain}/{slug}/"
+        except Post.DoesNotExist:
+            return new_domain
 
 
 class PostSearchView(PostsBaseView):
