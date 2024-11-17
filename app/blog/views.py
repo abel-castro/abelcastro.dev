@@ -97,7 +97,7 @@ class PrivacyPolicyView(TrackingMixin, TemplateView):
 def robots_txt(request):
     lines = [
         "User-agent: *",
-        "Disallow: /blog/",
+        "Allow: /blog/",
         "Disallow: /api/",
         "Disallow: /media/",
     ]
