@@ -62,16 +62,18 @@ urlpatterns = [
         name="privacy_policy",
     ),
     path("robots.txt", robots_txt),
-    path(
-        "blog",
-        RedirectToNewBlogView.as_view(),
-        name="redirect_to_new_blog",
-    ),
-    path(
-        "<slug:slug>/",
-        RedirectToNewBlogPostView.as_view(),
-        name="redirect_to_new_blog",
-    ),
+    # DISABLED: the redirects are apparently making that google search console
+    # is not able to index the new blog
+    # path(
+    #     "blog",
+    #     RedirectToNewBlogView.as_view(),
+    #     name="redirect_to_new_blog",
+    # ),
+    # path(
+    #     "<slug:slug>/",
+    #     RedirectToNewBlogPostView.as_view(),
+    #     name="redirect_to_new_blog",
+    # ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
