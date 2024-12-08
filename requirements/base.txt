@@ -1,13 +1,13 @@
 django==4.*
-psycopg2==2.9.7
+psycopg2==2.9.10
 djangorestframework==3.15.2
-pydantic==2.4.2
-requests==2.32.2
-environs==9.5.0 # https://pypi.org/project/environs/#basic-usage
+pydantic==2.10.3
+requests==2.32.3
+environs==11.2.1 # https://pypi.org/project/environs/#basic-usage
 django-extensions==3.2.3
-Werkzeug==3.0.6 # required for django-extensions
+Werkzeug==3.1.3 # required for django-extensions
 martor==1.6.*
-django-axes==6.1.1
-django-cors-headers==4.2.0
-drf-spectacular==0.27.2
+django-axes==7.0.1
+django-cors-headers==4.6.0
+drf-spectacular==0.28.0
 -e git+https://github.com/abel-castro/django_basic_analytics_tracker#egg=django-basic-analytics-tracker
