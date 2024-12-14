@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "martor",
     "axes",
     "rest_framework",
+    "graphene_django",
     "corsheaders",
     "basic_analytics_tracker",
     "drf_spectacular",
@@ -55,6 +56,7 @@ INSTALLED_APPS = [
     "blog",
     "sports",
     "api",
+    "graphql",
 ]
 
 AUTHENTICATION_BACKENDS = [
@@ -204,6 +206,8 @@ BASIC_ANALYTICS_ID = os.environ.get("BASIC_ANALYTICS_ID")
 REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
+
+GRAPHENE = {"SCHEMA": "graphql_schema.schema"}
 
 SPECTACULAR_SETTINGS = {
     "TITLE": "abelcastro.dev API docs",
