@@ -5,8 +5,11 @@ import requests
 from django.conf import settings
 from sports.constants import AVAILABLE_LEAGUES
 from sports.data_providers.interfaces import DataProviderInterface
-from sports.entities import (AvailableLeaguesEntity, ResultInternalEntity,
-                             TeamInternalEntity)
+from sports.entities import (
+    AvailableLeaguesEntity,
+    ResultInternalEntity,
+    TeamInternalEntity,
+)
 
 
 def add_api_football_related_data() -> AvailableLeaguesEntity:

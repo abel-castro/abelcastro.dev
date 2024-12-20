@@ -15,8 +15,13 @@ Including another URLconf
 """
 
 from blog.sitemaps import StaticSitemap
-from blog.views import (HomeView, PrivacyPolicyView, RedirectToNewBlogPostView,
-                        RedirectToNewBlogView, robots_txt)
+from blog.views import (
+    HomeView,
+    PrivacyPolicyView,
+    RedirectToNewBlogPostView,
+    RedirectToNewBlogView,
+    robots_txt,
+)
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
@@ -25,8 +30,11 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path
 from django.views.decorators.cache import cache_page
 from django.views.decorators.csrf import csrf_exempt
-from drf_spectacular.views import (SpectacularAPIView, SpectacularRedocView,
-                                   SpectacularSwaggerView)
+from drf_spectacular.views import (
+    SpectacularAPIView,
+    SpectacularRedocView,
+    SpectacularSwaggerView,
+)
 from graphene_django.views import GraphQLView
 
 sitemaps = {"static": StaticSitemap}

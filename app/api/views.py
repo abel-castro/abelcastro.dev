@@ -1,12 +1,10 @@
 from api.examples import RESULTS_API_EXAMPLE, STANDINGS_API_EXAMPLE
-from api.serializers import (LeaguesSerializer, PostSerializer,
-                             ResultsSerializer)
+from api.serializers import LeaguesSerializer, PostSerializer, ResultsSerializer
 from basic_analytics_tracker.mixins import TrackingMixin
 from blog.models import Post
 from django.db.models import Q
 from drf_spectacular.types import OpenApiTypes
-from drf_spectacular.utils import (OpenApiExample, OpenApiParameter,
-                                   extend_schema)
+from drf_spectacular.utils import OpenApiExample, OpenApiParameter, extend_schema
 from rest_framework import status
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.pagination import PageNumberPagination

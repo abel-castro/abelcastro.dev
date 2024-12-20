@@ -2,8 +2,11 @@ from typing import List
 
 from django.utils import timezone
 from sports.data_providers.interfaces import DataProviderInterface
-from sports.entities import (AvailableLeaguesEntity, LeagueInternalEntity,
-                             ResultInternalEntity)
+from sports.entities import (
+    AvailableLeaguesEntity,
+    LeagueInternalEntity,
+    ResultInternalEntity,
+)
 from sports.models import League, Result
 
 
