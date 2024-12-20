@@ -1,5 +1,6 @@
 import graphene
 from blog.models import Post, Tag
+from django.db.models import Q
 from graphene_django.types import DjangoObjectType
 from sports.get_leagues_data_from_db import get_current_standings_data
 from sports.models import League, Result, Team
@@ -140,35 +141,34 @@ class Query(graphene.ObjectType):
     ########
     posts = graphene.List(
         PostType,
-        title=graphene.String(),
-        tags=graphene.List(graphene.String),
-        content=graphene.String(),
+        search=graphene.String(required=False),
+        limit=graphene.Int(default_value=3),
+        offset=graphene.Int(default_value=0),
     )
+    total_posts = graphene.Int(search=graphene.String(required=False))
     post = graphene.Field(PostType, slug=graphene.String(required=True))
 
-    def resolve_posts(
-        root,
-        info,
-        title: str = None,
-        slug: str = None,
-        tags: str = None,
-        content: str = None,
-    ):
+    def resolve_posts(root, info, search: str = None, limit: int = 3, offset: int = 0):
         queryset = Post.objects.filter(published=True).prefetch_related("tags")
 
-        if title:
-            queryset = queryset.filter(title__icontains=title)
+        if search is not None:
+            queryset = queryset.filter(
+                Q(content__icontains=search)
+                | Q(title__icontains=search)
+                | Q(tags__name=search)
+            ).distinct()
+        return queryset[offset : offset + limit]
 
-        if slug:
-            queryset = queryset.filter(slug__icontains=slug)
+    def resolve_total_posts(self, info, search=None):
+        queryset = Post.objects.filter(published=True).prefetch_related("tags")
 
-        if tags:
-            queryset = queryset.filter(tags__name__in=tags).distinct()
-
-        if content:
-            queryset = queryset.filter(content__icontains=content)
-
-        return queryset
+        if search is not None:
+            queryset = queryset.filter(
+                Q(content__icontains=search)
+                | Q(title__icontains=search)
+                | Q(tags__name=search)
+            ).distinct()
+        return queryset.count()
 
     def resolve_post(root, info, slug: str):
         return Post.objects.get(slug=slug, published=True)

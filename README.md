@@ -13,6 +13,11 @@ This blog only uses django core functionalities and the great Markdown editor
 This project provides a REST-API for accessing the blog and sports-dashboard data.
 See the documentation here: https://abelcastro.dev/api/docs/ (swagger-ui) or https://abelcastro.dev/api/docs/redoc/ (redoc)
 
+
+## Graphql
+
+A graphql api that also provides blog and sports-dashboard data is also available. See `/grapqhl` for more details.
+
 ## Development
 
 - Create a .env file from the template env_template_dev with the desired values.
