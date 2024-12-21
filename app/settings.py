@@ -194,8 +194,6 @@ MARTOR_ENABLE_CONFIGS = {
     "hljs": "true",  # to enable/disable hljs highlighting in preview
 }
 
-APPEND_SLASH = False
-
 # CORS
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ALLOW_CREDENTIALS = True
