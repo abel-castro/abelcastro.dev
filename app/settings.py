@@ -194,6 +194,8 @@ MARTOR_ENABLE_CONFIGS = {
     "hljs": "true",  # to enable/disable hljs highlighting in preview
 }
 
+APPEND_SLASH = False
+
 # CORS
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ALLOW_CREDENTIALS = True
@@ -202,7 +204,6 @@ CORS_ORIGIN_WHITELIST = (
     "https://blog.abelcastro.dev",
     "https://blog-preview.abelcastro.dev",
 )
-
 CSRF_TRUSTED_ORIGINS = [
     "https://blog.abelcastro.dev",
     "https://blog-preview.abelcastro.dev",
