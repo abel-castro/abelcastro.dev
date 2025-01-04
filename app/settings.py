@@ -197,19 +197,14 @@ MARTOR_ENABLE_CONFIGS = {
 # CORS
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ALLOW_CREDENTIALS = True
-CORS_ORIGIN_WHITELIST = (
-    "https://ng.abelcastro.dev",
-    "https://blog.abelcastro.dev",
-    "https://blog-preview.abelcastro.dev",
-)
-CSRF_TRUSTED_ORIGINS = [
-    "https://blog.abelcastro.dev",
-    "https://blog-preview.abelcastro.dev",
+CORS_ORIGIN_WHITELIST = [
+    "https://abelcastro.dev",
+    "https://preview.abelcastro.dev",
 ]
-CORS_ALLOWED_ORIGINS = [
-    "https://blog.abelcastro.dev",
-    "https://blog-preview.abelcastro.dev",
-]
+
+CSRF_TRUSTED_ORIGINS = CORS_ORIGIN_WHITELIST
+
+CORS_ALLOWED_ORIGINS = CORS_ORIGIN_WHITELIST
 
 BASIC_ANALYTICS_URL = os.environ.get("BASIC_ANALYTICS_URL")
 BASIC_ANALYTICS_ID = os.environ.get("BASIC_ANALYTICS_ID")

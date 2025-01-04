@@ -43,12 +43,12 @@ urlpatterns = [
     path(f"{settings.ADMIN_URL}/", admin.site.urls),
     path("martor/", include("martor.urls")),
     path("api-auth/", include("rest_framework.urls")),
-    path(
-        "sitemap.xml",
-        sitemap,
-        {"sitemaps": sitemaps},
-        name="django.contrib.sitemaps.views.sitemap",
-    ),
+    # path(
+    #     "sitemap.xml",
+    #     sitemap,
+    #     {"sitemaps": sitemaps},
+    #     name="django.contrib.sitemaps.views.sitemap",
+    # ),
     # API docs
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path(
@@ -64,15 +64,15 @@ urlpatterns = [
     # GRAPHQL
     path("graphql/", csrf_exempt(GraphQLView.as_view(graphiql=True))),
     # Home
-    path("", cache_page(60 * 60)(HomeView.as_view()), name="home"),
+    # path("", cache_page(60 * 60)(HomeView.as_view()), name="home"),
     # Blog (redirect to new blog.abelcastro.dev)
     # path("blog/search/", PostSearchView.as_view(), name="search"),
     # path("blog/more-posts/", PostsLoadMoreView.as_view(), name="more_posts"),
-    path(
-        "privacy-policy/",
-        cache_page(60 * 60)(PrivacyPolicyView.as_view()),
-        name="privacy_policy",
-    ),
+    # path(
+    #     "privacy-policy/",
+    #     cache_page(60 * 60)(PrivacyPolicyView.as_view()),
+    #     name="privacy_policy",
+    # ),
     path("robots.txt", robots_txt),
     # DISABLED: the redirects are apparently making that google search console
     # is not able to index the new blog
