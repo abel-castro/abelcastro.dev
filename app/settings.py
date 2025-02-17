@@ -200,6 +200,7 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_WHITELIST = [
     "https://abelcastro.dev",
     "https://preview.abelcastro.dev",
+    "https://ng.abelcastro.dev",
 ]
 
 CSRF_TRUSTED_ORIGINS = CORS_ORIGIN_WHITELIST
