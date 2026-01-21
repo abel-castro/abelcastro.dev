@@ -7,7 +7,7 @@ pydantic==2.10.3
 requests==2.32.4
 environs==11.2.1 # https://pypi.org/project/environs/#basic-usage
 django-extensions==3.2.3
-Werkzeug==3.1.4 # required for django-extensions
+Werkzeug==3.1.5 # required for django-extensions
 martor==1.6.*
 django-axes==7.0.1
 django-cors-headers==4.6.0
