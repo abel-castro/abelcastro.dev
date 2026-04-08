@@ -1,12 +1,14 @@
+from api.authentication import BearerTokenAuthentication
 from api.examples import RESULTS_API_EXAMPLE, STANDINGS_API_EXAMPLE
-from api.serializers import LeaguesSerializer, PostSerializer, ResultsSerializer
+from api.permissions import IsTokenAuthenticated
+from api.serializers import CreatePostSerializer, LeaguesSerializer, PostSerializer, ResultsSerializer
 from basic_analytics_tracker.mixins import TrackingMixin
 from blog.models import Post
 from django.db.models import Q
 from drf_spectacular.types import OpenApiTypes
 from drf_spectacular.utils import OpenApiExample, OpenApiParameter, extend_schema
 from rest_framework import status
-from rest_framework.generics import ListAPIView, RetrieveAPIView
+from rest_framework.generics import ListCreateAPIView, RetrieveAPIView
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -32,9 +34,19 @@ class PostPagination(PageNumberPagination):
     ],
     responses={200: PostSerializer(many=True)},
 )
-class PostListAPI(TrackingMixin, ListAPIView):
-    serializer_class = PostSerializer
+class PostListCreateAPI(TrackingMixin, ListCreateAPIView):
     pagination_class = PostPagination
+    authentication_classes = [BearerTokenAuthentication]
+
+    def get_permissions(self):
+        if self.request.method == "POST":
+            return [IsTokenAuthenticated()]
+        return []
+
+    def get_serializer_class(self):
+        if self.request.method == "POST":
+            return CreatePostSerializer
+        return PostSerializer
 
     def get_queryset(self):
         # filter posts by title, content or tags
