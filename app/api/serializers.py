@@ -9,6 +9,9 @@ class TagSerializer(serializers.ModelSerializer):
         model = Tag
         fields = ("name",)
 
+    def validate_name(self, value):
+        return value.lower()
+
 
 class PostSerializer(serializers.ModelSerializer):
     tags = TagSerializer(many=True, read_only=True)
