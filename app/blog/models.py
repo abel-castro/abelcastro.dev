@@ -18,8 +18,8 @@ class Tag(models.Model):
 
 
 class Post(models.Model):
-    title = models.CharField(max_length=255)
-    slug = models.SlugField(unique=True)
+    title = models.CharField(max_length=200)
+    slug = models.SlugField(unique=True, max_length=300)
     meta_description = models.TextField(max_length=320)
     content = MartorField()
     published = models.BooleanField(default=False)
