@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 
+from blog.feeds import LatestPostsFeed
 from blog.sitemaps import StaticSitemap
 from blog.views import (
     HomeView,
@@ -74,6 +75,8 @@ urlpatterns = [
     #     name="privacy_policy",
     # ),
     path("robots.txt", robots_txt),
+    # RSS feed
+    path("feed/", cache_page(60 * 60)(LatestPostsFeed()), name="feed"),
     # DISABLED: the redirects are apparently making that google search console
     # is not able to index the new blog
     # path(

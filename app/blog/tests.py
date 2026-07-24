@@ -36,3 +36,42 @@ def test__no_n_plus_one(client, django_assert_max_num_queries):
     with django_assert_max_num_queries(5):
         response = client.get("/")
         assert response.status_code == 200
+
+
+@mark.django_db
+def test__rss_feed(client):
+    """
+    The RSS feed lists published posts and links to the live blog domain.
+    """
+    import datetime
+
+    tag = Tag.objects.create(name="Syndication")
+    published = Post.objects.create(
+        title="My RSS post",
+        slug="my-rss-post",
+        meta_description="a post that shows up in the feed",
+        content="# Heading\n\nSome **content**.",
+        published=True,
+    )
+    published.tags.add(tag)
+
+    Post.objects.create(
+        title="Draft post",
+        slug="draft-post",
+        meta_description="a draft that must stay hidden",
+        content="secret draft",
+        published=False,
+        date=datetime.date(2024, 1, 1),
+    )
+
+    response = client.get("/feed/")
+
+    assert response.status_code == 200
+    assert response["Content-Type"].startswith("application/rss+xml")
+
+    content = response.content.decode()
+    assert "My RSS post" in content
+    assert "https://blog.abelcastro.dev/my-rss-post/" in content
+    # Tag names are stored lowercase, so the category is rendered lowercase.
+    assert "<category>syndication</category>" in content
+    assert "Draft post" not in content
